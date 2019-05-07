@@ -4,8 +4,8 @@ class Board extends Component {
   constructor () {
     super()
     this.state = {
-      i: 0,
-      idx: 0,
+      i: -1,
+      idx: -1,
       tour: [
         56, 41, 24, 9, 3, 13, 7, 22, 5, 15, 30, 47, 62, 52, 58,
         48, 33, 16, 1, 11, 26, 32, 49, 59, 53, 63, 46, 31, 14, 
@@ -45,17 +45,24 @@ class Board extends Component {
     let y = Math.floor(i / 8);
     let black = ( x + y ) % 2 === 1;
     let knight = i === this.state.tour[this.state.idx]
-    // let board = new Array(8);
+    let visited;
     return knight ? (
-      black ?  (
-      <div className="black square knight"></div> 
-    ) : ( 
-      <div className="white square knight"></div>
-    ) ) : ( black ? (
-      <div className="black square"></div> 
-    ) : (
-      <div className="white square"></div>
-    ) )
+             black ?  (
+               <div className="black square knight"></div> 
+             ) : ( 
+               <div className="white square knight"></div>
+             ) ) : ( 
+               black ? (
+                 visited ? (
+                   <div className="black square visited"></div>
+                 ) : (
+                   <div className="black square"></div> 
+                 )) : (
+                   visited ? (
+                     <div className="white square visited"></div>
+                   ) : (
+                     <div className="white square"></div>
+    ) ) )
   }
 
 

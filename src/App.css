@@ -77,3 +77,14 @@ button {
 .white {
   background-color: #FFFFF0;
 }
+
+.visited:before {
+  content: 'X';
+  color: #FFF;
+  font-size: 60px;
+  margin-left: 20px;
+  text-shadow: 0px 0px 10px #000;
+  width: 100%;
+  height: 100%;
+
+}
