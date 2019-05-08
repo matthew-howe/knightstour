@@ -15,17 +15,12 @@ class Board extends Component {
       ],
     }
   }
-
+  
   componentDidMount() {
     this.moveKnight()
   }
 
-  clickHandler () {
-    let to = setTimeout(this.moveKnight, 100)
-  }
-
   moveKnight() {
-    console.log('moveknight called')
     if (this.state.idx > 63) {
       this.setState((state) => ({
         idx: 0,
@@ -40,12 +35,28 @@ class Board extends Component {
     }
   }
 
+  startSim() {
+    for (let i = 0; i < 2000; i++) {
+      let sim = function(i) {
+        if (i % 5 === 0) {
+        return function() {
+          document
+            .getElementById(['1'])
+            .click();
+        }
+        }
+      };
+      setTimeout(sim(i), 50 * i);
+    }
+  }
+
   renderSquare (i) {
     let x = i % 8;
     let y = Math.floor(i / 8);
     let black = ( x + y ) % 2 === 1;
     let knight = i === this.state.tour[this.state.idx]
-    let visited;
+    let visitedArr = this.state.tour.filter((el, idx) => idx < this.state.idx);
+    let visited = visitedArr.includes(i)
     return knight ? (
              black ?  (
                <div className="black square knight"></div> 
@@ -77,10 +88,10 @@ class Board extends Component {
         {squares}
       </div>
       <div id='buttons'>
-        <button onClick={() => this.moveKnight()}>Brute Force Permutation</button>
-        <button onClick={() => this.moveKnight()}>Divide and Conquer</button>
-        <button onClick={() => this.moveKnight()}>Warnsdorff's Rule</button>
-        <button onClick={() => this.moveKnight()}>Neural Network Solution</button>
+        <button id='1' onClick={() => this.moveKnight()}>Brute Force Permutation</button>
+        <button id='2' onClick={() => this.moveKnight()}>Divide and Conquer</button>
+        <button id='3' onClick={() => this.moveKnight()}>Warnsdorff's Rule</button>
+        <button id='4' onClick={() => this.startSim()}>Neural Network Solution</button>
         <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           Iterations: {this.state.i}</p>
