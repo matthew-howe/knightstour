@@ -40,6 +40,7 @@ export default function(state = initialState, action) {
     case "UPDATE_TEMP":
       return Object.assign({}, state, {temp: action.newTemp})
     default:
+      return initialState
   }
 }
   

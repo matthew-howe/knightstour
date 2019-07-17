@@ -2,8 +2,6 @@
   padding-top: 15px;
   text-align: center;
   font-family: 'Libre Baskerville', serif;
-  /* display: inline; */
-  /* font-size: 30px; */
   margin: 0;
 }
 
@@ -22,7 +20,6 @@ p {
 #board {
   width: 640px;
   height: 640px;
-  /* float: left; */
   margin: 35px;
 
   border: 1.5px solid black;
@@ -48,7 +45,6 @@ button {
 }
 
 .square {
-  /* color: white; */
   width: 80px;
   height: 80px;
   float: left;
