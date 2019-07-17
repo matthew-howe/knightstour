@@ -62,16 +62,20 @@ class Board extends Component {
         iter: state.iter++
       }
     })
-     if (this.state.iter < 200) {
+     if (this.state.iter < 2000) {
     console.log('starting new tour', this.state)
      await setTimeout(async () => {
       let curBoard = board;
+      curBoard[0][0] = 1
 
       if (this.boardVisited(moves)) {
         return true;
       }
 
       const lastMove = moves[moves.length - 1];
+      const lastlastMove = moves[moves.length - 2];
+      const lastlastlastMove = moves[moves.length - 3];
+      const llllMove = moves[moves.length - 4];
       let possibleMoves = this.findMoves(lastMove);
       possibleMoves = this.shuffle(possibleMoves)
 
@@ -102,8 +106,18 @@ class Board extends Component {
           
         }
       }
-      console.log('hit false', lastMove) 
-      return false; 
+       console.log('hit false', lastMove) 
+       curBoard[lastMove[0]][lastMove[1]] = 0
+       curBoard[lastlastMove[0]][lastlastMove[1]] = 0
+       curBoard[lastlastlastMove[0]][lastlastlastMove[1]] = 0
+       curBoard[llllMove[0]][llllMove[1]] = 0
+         moves.pop()
+       moves.pop()
+       moves.pop()
+       moves.pop()
+       this.props.moveKnight(moves[moves.length - 2]);
+       this.props.updateBoard(curBoard);
+      this.tour(curBoard, moves, updateBoard, moveKnight) 
      }, 100)
      }
   }
