@@ -35,6 +35,25 @@ class Board extends Component {
     return moves.length === 63;
   }
 
+  shuffle(array) {
+  var currentIndex = array.length, temporaryValue, randomIndex;
+
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
+}
+
    async tour(board, moves, updateBoard, moveKnight) {
     this.setState(state => {
       console.log(state.iter)
@@ -45,7 +64,7 @@ class Board extends Component {
     })
      if (this.state.iter < 200) {
     console.log('starting new tour', this.state)
-     await setTimeout(() => {
+     await setTimeout(async () => {
       let curBoard = board;
 
       if (this.boardVisited(moves)) {
@@ -53,7 +72,8 @@ class Board extends Component {
       }
 
       const lastMove = moves[moves.length - 1];
-      const possibleMoves = this.findMoves(lastMove);
+      let possibleMoves = this.findMoves(lastMove);
+      possibleMoves = this.shuffle(possibleMoves)
 
       for (let moveIdx = 0; moveIdx < possibleMoves.length; moveIdx++) {
         const curMove = possibleMoves[moveIdx];
@@ -84,7 +104,7 @@ class Board extends Component {
       }
       console.log('hit false', lastMove) 
       return false; 
-     }, 1000)
+     }, 100)
      }
   }
 
