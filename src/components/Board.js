@@ -164,9 +164,7 @@ class Board extends Component {
       <div id="main">
         <div id="board">{squares}</div>
         <div id="buttons">
-          <button id="b1">Brute Force Permutation</button>
-          <button id="b2">Divide and Conquer</button>
-          <button id="b3">Warnsdorff's Rule</button>
+          
           <button
             onClick={() =>
               this.tour(
@@ -178,7 +176,10 @@ class Board extends Component {
             }
             id="b4"
           >
-            Neural Network Solution
+            Brute Force Permutations
+          </button>
+          <button>
+            Warnsdorf's Algorithm
           </button>
           <div />
           <p>
