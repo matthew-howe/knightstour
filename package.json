@@ -2,8 +2,10 @@
   "name": "knights-tour",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://matthew-howe.github.io/knights-tour",
   "dependencies": {
     "d3": "^5.9.2",
+    "gh-pages": "^2.0.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-lineto": "^3.1.3",
@@ -17,7 +19,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
