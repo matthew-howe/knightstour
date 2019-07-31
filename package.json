@@ -6,6 +6,7 @@
   "dependencies": {
     "d3": "^5.9.2",
     "gh-pages": "^2.0.1",
+    "rc-slider": "^8.6.13",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-lineto": "^3.1.3",

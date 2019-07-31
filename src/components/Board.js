@@ -1,13 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { moveKnight, updateBoard } from '../store/board';
+import Slider, { Range } from 'rc-slider';
+// import 'rc-slider/assests/index.css';
+
 
 class Board extends Component {
   constructor() {
     super();
     this.state = {
-      iter: 0
+		iter: 0,
+		speed: 100
     }
+  }
+
+  handleChange(e) {
+	this.setState({ speed: e.target.value})
   }
 
   findMoves(pos) {
@@ -56,14 +64,12 @@ class Board extends Component {
 
    async tour(board, moves, updateBoard, moveKnight) {
     this.setState(state => {
-      console.log(state.iter)
       state.iter++
       return {
         iter: state.iter++
       }
     })
      if (this.state.iter < 2000) {
-    console.log('starting new tour', this.state)
      await setTimeout(async () => {
       let curBoard = board;
       curBoard[0][0] = 1
@@ -81,7 +87,6 @@ class Board extends Component {
 
       for (let moveIdx = 0; moveIdx < possibleMoves.length; moveIdx++) {
         const curMove = possibleMoves[moveIdx];
-        console.log(curMove)
         if (this.validMove(curBoard, curMove)) {
           moves.push(curMove);
           let row = curMove[0]
@@ -92,13 +97,10 @@ class Board extends Component {
           
           this.props.moveKnight(curMove);
           this.props.updateBoard(curBoard);
-          console.log('before new tour', curMove)
           if (this.tour(curBoard, moves, updateBoard, moveKnight)) {
-            console.log('hit true', curMove)
             return true 
           } 
 
-          console.log('hit the pop spot') 
           moves.pop();
           curBoard[curMove[0]][curMove[1]] = 0;
           this.props.moveKnight(moves[moves.length - 1]);
@@ -106,19 +108,18 @@ class Board extends Component {
           
         }
       }
-       console.log('hit false', lastMove) 
        curBoard[lastMove[0]][lastMove[1]] = 0
        curBoard[lastlastMove[0]][lastlastMove[1]] = 0
        curBoard[lastlastlastMove[0]][lastlastlastMove[1]] = 0
        curBoard[llllMove[0]][llllMove[1]] = 0
-         moves.pop()
+       moves.pop()
        moves.pop()
        moves.pop()
        moves.pop()
        this.props.moveKnight(moves[moves.length - 2]);
        this.props.updateBoard(curBoard);
       this.tour(curBoard, moves, updateBoard, moveKnight) 
-     }, 100)
+     }, this.state.speed)
      }
   }
 
@@ -178,7 +179,18 @@ class Board extends Component {
           >
             Brute Force Permutations
           </button>
-          <button>
+		  <button
+
+            onClick={() =>
+              this.tour(
+                this.props.board,
+                [[0, 0]],
+                this.props.updateBoard,
+                this.props.moveKnight
+              )
+            }
+            id="b4"
+          >
             Warnsdorf's Algorithm
           </button>
           <div />
@@ -187,6 +199,24 @@ class Board extends Component {
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Iterations:{' '}
             {this.state.iter} 
           </p>
+		  <p>
+			  
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Speed:{' '}
+            {this.state.speed} ms
+		  </p>
+		  <input
+			  name="speed"
+			  onChange={e => {
+				  this.handleChange(e)
+			  }}
+			  type="range"
+			  min="10"
+			  max="500"
+			  value={this.state.speed}
+			  className="slider"
+			/>
+
         </div>
       </div>
     );
