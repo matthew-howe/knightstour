@@ -1,13 +1,6 @@
 import util from '../utils/utils';
 
 export default async function backtrack(board, moves, updateBoard, moveKnight) {
-  this.setState(state => {
-    state.iter++;
-    return {
-      iter: state.iter++,
-    };
-  });
-  if (this.state.iter < 2000) {
     await setTimeout(async () => {
       let curBoard = board;
       curBoard[0][0] = 1;
@@ -29,16 +22,16 @@ export default async function backtrack(board, moves, updateBoard, moveKnight) {
 
           curBoard[row][column] = 1;
 
-          this.props.moveKnight(curMove);
-          this.props.updateBoard(curBoard);
+          moveKnight(curMove);
+          updateBoard(curBoard);
           if (backtrack(curBoard, moves, updateBoard, moveKnight)) {
             return true;
           }
 
           moves.pop();
           curBoard[curMove[0]][curMove[1]] = 0;
-          this.props.moveKnight(moves[moves.length - 1]);
-          this.props.updateBoard(curBoard);
+          moveKnight(moves[moves.length - 1]);
+          updateBoard(curBoard);
         }
       }
 
@@ -54,11 +47,9 @@ export default async function backtrack(board, moves, updateBoard, moveKnight) {
       for (let j = 2; j < random; j++) {
         moves.pop();
       }
-      console.log('moves before new', moves);
 
-      this.props.moveKnight(moves[moves.length - 2]);
-      this.props.updateBoard(curBoard);
+      moveKnight(moves[moves.length - 2]);
+      updateBoard(curBoard);
       backtrack(curBoard, moves, updateBoard, moveKnight);
-    }, this.state.speed);
+    }, 100);
   }
-}

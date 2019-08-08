@@ -1,5 +1,11 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+# misc
+.env
+precache-manifest.523a64242b8099f7f958285f8efe2cfb.js
+precache-manifest.7ae6c0d11bf8bb57e3ea6b8f96b7f54c.js
+/static
+
 # dependencies
 /node_modules
 /.pnp
