@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { moveKnight, updateBoard } from '../store/board';
+import util from '../utils/utils';
+import backtrack from '../algorithms/bruteForcePermutations'
 
 class Board extends Component {
     constructor() {
@@ -9,64 +11,12 @@ class Board extends Component {
             iter: 0,
             speed: 100,
         };
+    
+        this.backtrack = backtrack.bind(this)
     }
 
-    
     handleChange(e) {
         this.setState({ speed: e.target.value });
-    }
-
-    findMoves(pos) {
-        // findmoves takes the [x, y] coordinates
-        // of the knight and returns an array of valid
-        // positions for the knight to move
-
-        let movesArr = [
-            [pos[0] - 1, pos[1] - 2],
-            [pos[0] - 2, pos[1] - 1],
-            [pos[0] + 1, pos[1] - 2],
-            [pos[0] + 2, pos[1] - 1],
-            [pos[0] - 2, pos[1] + 1],
-            [pos[0] - 1, pos[1] + 2],
-            [pos[0] + 1, pos[1] + 2],
-            [pos[0] + 2, pos[1] + 1],
-        ];
-        let posMoves = movesArr.filter(move => {
-            return move[0] >= 0 && move[1] >= 0 && move[0] < 8 && move[1] < 8;
-        });
-        return posMoves;
-    }
-
-    validMove(board, pos) {
-        // validmove checks if the target square 
-        // hasn't been visited yet
-        return board[pos[0]][pos[1]] !== 1;
-    }
-
-    boardVisited(moves) {
-        // checks if every square has been visited
-        return moves.length === 63;
-    }
-
-    shuffle(array) {
-        // shuffling utility
-        var currentIndex = array.length,
-            temporaryValue,
-            randomIndex;
-
-        // While there remain elements to shuffle...
-        while (0 !== currentIndex) {
-            // Pick a remaining element...
-            randomIndex = Math.floor(Math.random() * currentIndex);
-            currentIndex -= 1;
-
-            // And swap it with the current element.
-            temporaryValue = array[currentIndex];
-            array[currentIndex] = array[randomIndex];
-            array[randomIndex] = temporaryValue;
-        }
-
-        return array;
     }
 
     async tour(board, moves, updateBoard, moveKnight) {
@@ -81,17 +31,17 @@ class Board extends Component {
                 let curBoard = board;
                 curBoard[0][0] = 1;
 
-                if (this.boardVisited(moves)) {
+                if (util.boardVisited(moves)) {
                     return true;
                 }
 
                 const lastMove = moves[moves.length - 1];
-                let possibleMoves = this.findMoves(lastMove);
-                possibleMoves = this.shuffle(possibleMoves);
+                let possibleMoves = util.findMoves(lastMove);
+                possibleMoves = util.shuffle(possibleMoves);
 
                 for (let moveIdx = 0; moveIdx < possibleMoves.length; moveIdx++) {
                     const curMove = possibleMoves[moveIdx];
-                    if (this.validMove(curBoard, curMove)) {
+                    if (util.validMove(curBoard, curMove)) {
                         moves.push(curMove);
                         let row = curMove[0];
                         let column = curMove[1];
@@ -176,7 +126,7 @@ class Board extends Component {
                 <div id="buttons">
                     <button
                         onClick={() =>
-                            this.tour(
+                            this.backtrack(
                                 this.props.board,
                                 [[0, 0]],
                                 this.props.updateBoard,
