@@ -55,6 +55,17 @@ class utils {
 
         return array;
     }
+
+    numOfEmpty( board, pos ) {
+        let count = 0;
+        let moves = this.findMoves(pos); 
+
+        for (const move of moves) {
+            if (this.validMove(board, move)) count++;
+        }
+
+        return count;
+    }
 }
 
 let util = new utils();

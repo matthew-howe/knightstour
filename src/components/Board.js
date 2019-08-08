@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { moveKnight, updateBoard } from '../store/board';
-import util from '../utils/utils';
 import backtrack from '../algorithms/backtracking'
+import warnsdorff from '../algorithms/warnsdorff'
 
 class Board extends Component {
     constructor() {
@@ -13,6 +13,7 @@ class Board extends Component {
         };
     
         this.backtrack = backtrack.bind(this)
+        this.warnsdorff = warnsdorff.bind(this)
     }
 
     handleChange(e) {
@@ -76,17 +77,14 @@ class Board extends Component {
                     </button>
                     <button
                         onClick={() =>
-                            this.props.updateBoard([  [0,0,0,0,0,0,0,0],
-  [0,0,0,0,0,0,0,0],
-  [0,0,0,0,0,0,0,0],
-  [0,0,0,0,0,0,0,0],
-  [0,0,0,0,0,0,0,0],
-  [0,0,0,0,0,0,0,0],
-  [0,0,0,0,0,0,0,0],
-  [0,0,0,0,0,0,0,0],
-                            ])
+                            this.warnsdorff(
+                                this.props.board,
+                                [[5, 3]],
+                                this.props.updateBoard,
+                                this.props.moveKnight
+                            )
                         }
-                        id="b4"
+                        id="b3"
                     >
                         Warnsdorf's Algorithm
                     </button>
