@@ -89,14 +89,13 @@ class Board extends Component {
                         Warnsdorf's Algorithm
                     </button>
                     <div />
-                    <p>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Iterations:{' '}
+                    <p className="iterations">
+                   Iterations:{' '}
                         {this.state.iter}
                     </p>
-                    <p>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Speed: {this.state.speed}{' '}
+                    <div>
+                    <p className="speed-text">
+                       Speed: {this.state.speed}{' '}
                         ms
                     </p>
                     <input
@@ -110,6 +109,7 @@ class Board extends Component {
                         value={this.state.speed}
                         className="slider"
                     />
+                </div>
                 </div>
             </div>
         );
