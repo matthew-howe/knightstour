@@ -6,13 +6,13 @@
 }
 
 h1 {
-  font-size: 60px;
+  font-size: 32px;
   margin: 0;
   padding: 0;
 }
 
 p {
-  font-size: 30px;
+  font-size: 18px;
   padding: 0;
   margin: 0;
 }
@@ -23,21 +23,31 @@ p {
   margin: 35px;
 
   border: 1.5px solid black;
+  zoom: 0.65;
+  -moz-transform: scale(0.65);
 }
 
 #main {
-  display: flex;
-  flex-direction: row-reverse;
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+@media only screen and (max-width: 680px) {
+    #main {
+        flex-direction: column;
+    }
 }
 
 #buttons {
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
+        flex-direction: column-reverse;
   justify-content: space-evenly;
 }
 
 button {
-  font-size: 30px;
+  /* width: 200px; */
+  font-size: 15px;
   background-color: #FFFFF0;
   border: 1px solid;
   padding: 10px;

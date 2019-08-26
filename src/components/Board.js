@@ -11,7 +11,7 @@ class Board extends Component {
             iter: 0,
             speed: 100,
         };
-    
+
         this.backtrack = backtrack.bind(this)
         this.warnsdorff = warnsdorff.bind(this)
     }
@@ -37,19 +37,19 @@ class Board extends Component {
             black ? (
                 <div key={i} className="black square knight" />
             ) : (
-                <div key={i} className="white square knight" />
-            )
+                    <div key={i} className="white square knight" />
+                )
         ) : black ? (
             visited ? (
                 <div key={i} className="black square visited" />
             ) : (
-                <div key={i} className="black square" />
-            )
+                    <div key={i} className="black square" />
+                )
         ) : visited ? (
             <div key={i} className="white square visited" />
         ) : (
-            <div key={i} className="white square" />
-        );
+                        <div key={i} className="white square" />
+                    );
     }
 
     render() {
