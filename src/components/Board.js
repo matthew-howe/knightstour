@@ -64,19 +64,6 @@ class Board extends Component {
                 <div id="buttons">
                     <button
                         onClick={() =>
-                            this.backtrack(
-                                this.props.board,
-                                [[0, 0]],
-                                this.props.updateBoard,
-                                this.props.moveKnight
-                            )
-                        }
-                        id="b4"
-                    >
-                        Brute Force Permutations
-                    </button>
-                    <button
-                        onClick={() =>
                             this.warnsdorff(
                                 this.props.board,
                                 [[5, 3]],
@@ -86,7 +73,35 @@ class Board extends Component {
                         }
                         id="b3"
                     >
+                        Divide and Conquer
+                    </button>
+                    <button
+                        onClick={() =>
+                            this.warnsdorff(
+                                this.props.board,
+                                [[5, 3]],
+                                this.props.updateBoard,
+                                this.props.moveKnight,
+                                this.state.speed
+                            )
+                        }
+                        id="b3"
+                    >
                         Warnsdorf's Algorithm
+                    </button>
+                    <button
+                        onClick={() =>
+                            this.backtrack(
+                                this.props.board,
+                                [[0, 0]],
+                                this.props.updateBoard,
+                                this.props.moveKnight,
+                                this.state.speed
+                            )
+                        }
+                        id="b4"
+                    >
+                        Brute Force Permutations
                     </button>
                     <div />
                     <p className="iterations">

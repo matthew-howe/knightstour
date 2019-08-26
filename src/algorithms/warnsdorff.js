@@ -1,6 +1,6 @@
 import util from '../utils/utils';
 
-export default async function warnsdorf(board, moves, updateBoard, moveKnight) {
+export default async function warnsdorf(board, moves, updateBoard, moveKnight, speed) {
     await setTimeout(async () => {
         let curBoard = board; 
         // curBoard[5][3] = 0; // <- remove later

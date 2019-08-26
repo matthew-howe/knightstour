@@ -1,6 +1,6 @@
 import util from '../utils/utils';
 
-export default async function backtrack(board, moves, updateBoard, moveKnight) {
+export default async function backtrack(board, moves, updateBoard, moveKnight, speed) {
     await setTimeout(async () => {
         console.log('new start', moves)
         let curBoard = board; 
@@ -58,5 +58,5 @@ export default async function backtrack(board, moves, updateBoard, moveKnight) {
       moveKnight(moves[moves.length - 2]);
       updateBoard(curBoard);
       backtrack(curBoard, moves, updateBoard, moveKnight);
-    }, 500);
+    }, speed);
   }

@@ -32,7 +32,7 @@ p {
     flex-direction: row-reverse;
 }
 
-@media only screen and (max-width: 680px) {
+@media only screen and (max-width: 748px) {
     #main {
         flex-direction: column;
     }
@@ -40,9 +40,9 @@ p {
 
 #buttons {
   display: flex;
-  /* flex-direction: column; */
-        flex-direction: column-reverse;
-  justify-content: space-evenly;
+  flex-direction: column-reverse;
+  padding: 8px 20px 10px 50px;
+  justify-content: space-around;
 }
 
 button {
@@ -50,8 +50,23 @@ button {
   font-size: 15px;
   background-color: #FFFFF0;
   border: 1px solid;
+  border-radius: 6px;
   padding: 10px;
   box-shadow: 2px 5px;
+}
+
+button:hover {
+  background: #F2E3AB;
+  text-decoration: none;
+}
+
+button:focus {
+  outline: 0;
+}
+
+button:active {
+  box-shadow: 0 2px #27496d;
+  transform: translateY(2px);
 }
 
 .square {
@@ -95,6 +110,7 @@ button {
 
 .speed-text {
     margin-left: 10%;
+    font-family: SF Mono;
 }
 
 
@@ -130,4 +146,5 @@ button {
 
 .iterations {
     margin-left: 10%;
+    font-family: SF Mono;
 }
