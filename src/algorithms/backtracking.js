@@ -2,7 +2,6 @@ import util from '../utils/utils';
 
 export default async function backtrack(board, moves, updateBoard, moveKnight, speed) {
     await setTimeout(async () => {
-        console.log('new start', moves)
         let curBoard = board; 
         curBoard[0][0] = 1; // <- remove later
 
@@ -18,8 +17,8 @@ export default async function backtrack(board, moves, updateBoard, moveKnight, s
       possibleMoves = util.shuffle(possibleMoves);
 
 
-        // for each possible move check if its a valid move
-        // if it is, make that move
+    // for each possible move check if its a valid move
+    // if it is, make that move
       for (let moveIdx = 0; moveIdx < possibleMoves.length; moveIdx++) {
         const curMove = possibleMoves[moveIdx];
         if (util.validMove(curBoard, curMove)) {
@@ -44,16 +43,6 @@ export default async function backtrack(board, moves, updateBoard, moveKnight, s
 
       curBoard[lastMove[0]][lastMove[1]] = 0;
       moves.pop();
-
-      // let random = Math.floor(Math.random() * 5) + 2;
-      // if (random > moves.length) random = moves.length;
-      // for (let i = 2; i < random; i++) {
-      //   curBoard[moves[moves.length - i][0]][moves[moves.length - i][1]] = 0;
-      // }
-
-      // for (let j = 2; j < random; j++) {
-      //   moves.pop();
-      // }
 
       moveKnight(moves[moves.length - 2]);
       updateBoard(curBoard);
