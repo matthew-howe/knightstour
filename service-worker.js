@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/knights-tour/precache-manifest.882894e1408f95703eb1c8779e942760.js"
+  "/knights-tour/precache-manifest.3f5c7c99428eab41b549fc2945005571.js"
 );
 
 self.addEventListener('message', (event) => {
