@@ -60,6 +60,9 @@ class Board extends Component {
     }
     return (
       <div id="main">
+          <div id="img">
+              <img className="img" src="https://i.imgur.com/rDN4qFr.jpg" />
+          </div>
         <div id="board">{squares}</div>
         <div id="buttons">
           <button

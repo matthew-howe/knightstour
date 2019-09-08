@@ -1,8 +1,18 @@
+html {
+    width: 800px;
+}
+
+.img {
+    margin-top: 2em;
+    height: 400px;
+}
+
 #title {
   padding-top: 15px;
-  text-align: center;
   font-family: 'Libre Baskerville', serif;
-  margin: 0;
+  margin-left: 35%;
+  text-align: center;
+  position: fixed;
 }
 
 h1 {
@@ -30,6 +40,12 @@ p {
 #main {
     display: flex;
     flex-direction: row-reverse;
+    position: fixed;
+    margin-top: 11%;
+}
+
+@media only screen and (max-width: 965px) {
+    #img { display: none; }
 }
 
 @media only screen and (max-width: 748px) {
