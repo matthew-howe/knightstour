@@ -6,10 +6,6 @@ function App() {
   return (
 
     <div className='app'>
-      <div id="title">
-        <h1>Knight's Tour</h1>
-        <p>By Matthew Howe</p>
-      </div>
       <div>
         <Board />
       </div>

@@ -1,28 +1,28 @@
 html {
-    width: 800px;
+    /* width: 800px; */
 }
 
 .img {
-    margin-top: 2em;
+    margin-top: 6em;
     height: 400px;
 }
 
+.middle {
+}
+
 #title {
-  padding-top: 15px;
   font-family: 'Libre Baskerville', serif;
-  margin-left: 35%;
   text-align: center;
-  position: fixed;
 }
 
 h1 {
-  font-size: 32px;
+  font-size: 38px;
   margin: 0;
   padding: 0;
 }
 
 p {
-  font-size: 18px;
+  font-size: 22px;
   padding: 0;
   margin: 0;
 }
@@ -40,8 +40,8 @@ p {
 #main {
     display: flex;
     flex-direction: row-reverse;
-    position: fixed;
-    margin-top: 11%;
+    justify-content: space-evenly;
+    position: absolute;
 }
 
 @media only screen and (max-width: 965px) {
@@ -52,15 +52,16 @@ p {
     #main {
         flex-direction: column;
     }
-    .iterations { text-align: center; margin-top: 1em; }
+    .iterations { text-align: center; margin-top: 1em; margin-right: 2.5em;}
     .speed-text { text-align: center; margin-top: 1em; }
+    #title { margin-left: 25%; }
 }
 
 #buttons {
   display: flex;
   flex-direction: column;
-  margin-top: 5%;
-  margin-bottom: 5%;
+  margin-top: 10%;
+  margin-bottom: 2%;
   padding: 8px 20px 10px 50px;
   justify-content: space-around;
 }

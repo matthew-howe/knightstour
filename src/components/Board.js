@@ -63,7 +63,13 @@ class Board extends Component {
           <div id="img">
               <img className="img" src="https://i.imgur.com/rDN4qFr.jpg" />
           </div>
+          <div className="middle">
+      <div id="title">
+        <h1>Knight's Tour</h1>
+        <p>By Matthew Howe</p>
+      </div>
         <div id="board">{squares}</div>
+    </div>
         <div id="buttons">
           <button
             onClick={() =>

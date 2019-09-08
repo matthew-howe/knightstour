@@ -1,4 +1,4 @@
 
 ## DEMO: https://matthew-howe.github.io/knights-tour/
 
-![screenshot](https://i.gyazo.com/98c870de5367ad4d13dd222cc1e2f317.png)
+![screenshot](https://i.gyazo.com/95d962a1c73b8480d1002afce2b6f95a.png)
