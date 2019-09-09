@@ -61,12 +61,12 @@ class Board extends Component {
     return (
       <div id="main">
           <div id="img">
-              <img className="img" src="https://i.imgur.com/rDN4qFr.jpg" />
+              <img className="img" alt="knight" src="https://i.imgur.com/rDN4qFr.jpg" />
           </div>
           <div className="middle">
       <div id="title">
         <h1>Knight's Tour</h1>
-        <p>By Matthew Howe</p>
+        <p>By <a href="http://matthewhowe.net">Matthew Howe</a></p>
       </div>
         <div id="board">{squares}</div>
     </div>
