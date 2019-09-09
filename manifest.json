@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Knight's Tour",
+  "name": "Knight's Tour",
   "icons": [
     {
       "src": "favicon.ico",
