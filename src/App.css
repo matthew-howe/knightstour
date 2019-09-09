@@ -49,12 +49,10 @@ p {
 }
 
 @media only screen and (max-width: 748px) {
-    #main {
-        flex-direction: column;
-    }
+    #main { flex-direction: column; }
     .iterations { text-align: center; margin-top: 1em; margin-right: 2.5em;}
     .speed-text { text-align: center; margin-top: 1em; }
-    #title { margin-left: 25%; }
+    #title { margin-left: 0%; }
 }
 
 #buttons {
