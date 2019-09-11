@@ -47,5 +47,5 @@ export default async function backtrack(board, moves, updateBoard, moveKnight, s
       moveKnight(moves[moves.length - 2]);
       updateBoard(curBoard);
       backtrack(curBoard, moves, updateBoard, moveKnight);
-    }, speed);
+    }, 100);
   }
