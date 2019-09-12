@@ -15,7 +15,6 @@ export default async function warnsdorf(board, moves, updateBoard, moveKnight, s
         // find the move with the most empty spaces
         let bestMove;
         let bestCount = Infinity;
-        console.log(possibleMoves)
         for (const move of possibleMoves) {
             const count = util.numOfEmpty( curBoard, move);
             if (count < bestCount && util.validMove( curBoard, move)) {
