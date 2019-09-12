@@ -14,10 +14,15 @@ class Board extends Component {
 
     this.backtrack = backtrack.bind(this);
     this.warnsdorff = warnsdorff.bind(this);
+    this.iterate = this.iterate.bind(this)
   }
 
   handleChange(e) {
     this.setState({ speed: e.target.value });
+  }
+
+  iterate() {
+      this.setState({ iter:  this.state.iter + 1 })
   }
 
   renderSquare(i) {
@@ -59,7 +64,7 @@ class Board extends Component {
       squares.push(this.renderSquare(i));
     }
     return (
-      <div id="main">
+      <div id="main" >
           <div id="img">
               <img className="img" alt="knight" src="https://i.imgur.com/rDN4qFr.jpg" />
           </div>
@@ -78,7 +83,8 @@ class Board extends Component {
                 [[0, 0]],
                 this.props.updateBoard,
                 this.props.moveKnight,
-                this.state.speed
+                this.state.speed,
+                this.iterate
               )
             }
             id="b4"
@@ -89,23 +95,25 @@ class Board extends Component {
             onClick={() =>
               this.warnsdorff(
                 this.props.board,
-                [[5, 3]],
+                [[0, 0]],
                 this.props.updateBoard,
                 this.props.moveKnight,
-                this.state.speed
+                this.state.speed,
+                this.iterate
               )
             }
             id="b3"
           >
-            Warnsdorf's Algorithm
+            Warnsdorf's Rule
           </button>
           <button
             onClick={() =>
               this.warnsdorff(
                 this.props.board,
-                [[5, 3]],
+                [[0, 0]],
                 this.props.updateBoard,
-                this.props.moveKnight
+                this.props.moveKnight,
+                this.iterate
               )
             }
             id="b3"
@@ -116,10 +124,12 @@ class Board extends Component {
             onClick={() =>
               this.warnsdorff(
                 this.props.board,
-                [[5, 3]],
+                [[0, 0]],
                 this.props.updateBoard,
-                this.props.moveKnight
-              )
+                this.props.moveKnight,
+                this.state.speed,
+                this.iterate
+              ) 
             }
             id="b3"
           >

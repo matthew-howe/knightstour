@@ -11,7 +11,7 @@ A visual exploration of local search algorithms which generate solutions to the 
   **Brute Force Backtracking**  
   Systematically enumerates over all possible tours. Backtracking when a knight runs out of valid moves
 
-  **Warnsdorf's Algorithm**  
+  **Warnsdorf's Rule**  
   Will move the knight so that it always proceeds to the square form which the knight will have the fewest onward moves. (Not including squares already visited.)
 
   **Divide and Conquer**  
