@@ -2,9 +2,10 @@
 
 A visual exploration of local search algorithms which generate solutions to the Knight's Tour Problem.
 
+### VIEW LIVE: https://matthew-howe.github.io/knights-tour/
+
 ![screenshot](https://i.gyazo.com/95d962a1c73b8480d1002afce2b6f95a.png)
 
-### VIEW LIVE: https://matthew-howe.github.io/knights-tour/
 
 ## Algorithms
 **Brute Force Backtracking**
