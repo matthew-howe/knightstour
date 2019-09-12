@@ -1,5 +1,6 @@
 html {
-    /* width: 800px; */
+    height: 100%;
+    z-index: -2;
 }
 
 .img {
@@ -216,4 +217,3 @@ a:link, a:active, a:visited {
     text-shadow: 0.03em 0 #fff, -0.03em 0 #fff, 0 0.03em #fff, 0 -0.03em #fff, 0.06em 0 #fff, -0.06em 0 #fff, 0.09em 0 #fff, -0.09em 0 #fff, 0.12em 0 #fff, -0.12em 0 #fff, 0.15em 0 #fff, -0.15em 0 #fff;
     background-position: 0% 93%, 100% 93%, 0% 93%;
 }
-
