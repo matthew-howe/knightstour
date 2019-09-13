@@ -1,16 +1,14 @@
 import util from '../utils/utils';
 
-export default async function backtrack(board, moves, updateBoard, moveKnight, speed, iterate) {
+const backtrack = async (board, moves, updateBoard, moveKnight, speed, iterate) => {
     await setTimeout(async () => {
 
-
+        iterate()
         let curBoard = board; 
         curBoard[0][0] = 1; // <- remove later
 
         
-      if (util.boardVisited(moves)) {
-          return true; // break case
-      }
+      if (util.boardVisited(moves)) return true; // break case
 
       // get the current position of the knight and the
       // possible moves for it to make
@@ -32,7 +30,7 @@ export default async function backtrack(board, moves, updateBoard, moveKnight, s
 
           moveKnight(curMove);
           updateBoard(curBoard);
-          if (backtrack(curBoard, moves, updateBoard, moveKnight)) {
+          if (backtrack(curBoard, moves, updateBoard, moveKnight, speed, iterate)) {
             return true;
           }
 
@@ -48,6 +46,19 @@ export default async function backtrack(board, moves, updateBoard, moveKnight, s
 
       moveKnight(moves[moves.length - 2]);
       updateBoard(curBoard);
-      backtrack(curBoard, moves, updateBoard, moveKnight);
-    }, 100);
+        backtrack(
+            [
+                [0,0,0,0,0,0,0,0], 
+                [0,0,0,0,0,0,0,0], 
+                [0,0,0,0,0,0,0,0], 
+                [0,0,0,0,0,0,0,0], 
+                [0,0,0,0,0,0,0,0], 
+                [0,0,0,0,0,0,0,0], 
+                [0,0,0,0,0,0,0,0], 
+                [0,0,0,0,0,0,0,0], 
+            ], 
+            [[0,0]], updateBoard, moveKnight, speed, iterate);
+    }, speed);
   }
+
+export default backtrack;

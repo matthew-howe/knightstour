@@ -25,6 +25,10 @@ class Board extends Component {
       this.setState({ iter:  this.state.iter + 1 })
   }
 
+  updateSpeed() {
+      return this.state.speed;
+  }
+
   renderSquare(i) {
     let x = i % 8;
     let y = Math.floor(i / 8);
@@ -105,21 +109,6 @@ class Board extends Component {
             id="b3"
           >
             Warnsdorf's Rule
-          </button>
-          <button
-            onClick={() =>
-              this.warnsdorff(
-                this.props.board,
-                [[0, 0]],
-                this.props.updateBoard,
-                this.props.moveKnight,
-                this.state.speed,
-                this.iterate
-              )
-            }
-            id="b3"
-          >
-            Divide and Conquer
           </button>
           <button
             onClick={() =>

@@ -4,9 +4,10 @@ const warnsdorf = async (board, moves, updateBoard, moveKnight, speed, iterate) 
     await setTimeout(async () => {
         let curBoard = board; 
 
-        if (util.boardVisited(moves)) return true;
+        if (util.boardVisitedWarnsdorf(moves)) return true;
         
         iterate()
+
 
         // get the current position of the knight and the
         // possible moves for it to make
@@ -42,7 +43,7 @@ const warnsdorf = async (board, moves, updateBoard, moveKnight, speed, iterate) 
         }
 
         return false;
-    }, 100);
+    }, speed);
 }
 
 export default warnsdorf;

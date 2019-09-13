@@ -34,6 +34,11 @@ class utils {
         return moves.length === 63;
     }
 
+    boardVisitedWarnsdorf(moves) {
+        // adjusted for warnsdorf's moves length
+        return moves.length === 65;
+    }
+
 
     shuffle(array) {
         // shuffling utility
