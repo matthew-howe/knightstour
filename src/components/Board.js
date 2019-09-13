@@ -113,6 +113,7 @@ class Board extends Component {
                 [[0, 0]],
                 this.props.updateBoard,
                 this.props.moveKnight,
+                this.state.speed,
                 this.iterate
               )
             }

@@ -1,11 +1,12 @@
 import util from '../utils/utils';
 
-export default async function warnsdorf(board, moves, updateBoard, moveKnight, speed) {
+const warnsdorf = async (board, moves, updateBoard, moveKnight, speed, iterate) => {
     await setTimeout(async () => {
         let curBoard = board; 
 
         if (util.boardVisited(moves)) return true;
-
+        
+        iterate()
 
         // get the current position of the knight and the
         // possible moves for it to make
@@ -36,10 +37,12 @@ export default async function warnsdorf(board, moves, updateBoard, moveKnight, s
             return false;
         }
 
-        if (warnsdorf(curBoard, moves, updateBoard, moveKnight)) {
+        if (warnsdorf(curBoard, moves, updateBoard, moveKnight, speed, iterate)) {
             return true;
         }
 
         return false;
     }, 100);
 }
+
+export default warnsdorf;
