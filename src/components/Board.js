@@ -9,7 +9,8 @@ class Board extends Component {
     super();
     this.state = {
       iter: 0,
-      speed: 100,
+      speed: 80,
+      start: [[0,0]]
     };
 
     this.backtrack = backtrack.bind(this);
@@ -84,12 +85,13 @@ class Board extends Component {
             onClick={() =>
               this.backtrack(
                 this.props.board,
-                [[0, 0]],
+                this.state.start,
                 this.props.updateBoard,
                 this.props.moveKnight,
                 this.state.speed,
-                this.iterate
-              )
+                this.iterate,
+                this.updateSpeed
+              ) 
             }
             id="b4"
           >
@@ -99,7 +101,7 @@ class Board extends Component {
             onClick={() =>
               this.warnsdorff(
                 this.props.board,
-                [[0, 0]],
+                this.state.start,
                 this.props.updateBoard,
                 this.props.moveKnight,
                 this.state.speed,
@@ -109,21 +111,6 @@ class Board extends Component {
             id="b3"
           >
             Warnsdorf's Rule
-          </button>
-          <button
-            onClick={() =>
-              this.warnsdorff(
-                this.props.board,
-                [[0, 0]],
-                this.props.updateBoard,
-                this.props.moveKnight,
-                this.state.speed,
-                this.iterate
-              ) 
-            }
-            id="b3"
-          >
-              Neural Network Algorithm
           </button>
           <div />
           <div>
