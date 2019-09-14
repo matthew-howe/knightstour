@@ -112,6 +112,36 @@ class Board extends Component {
           >
             Warnsdorf's Rule
           </button>
+          <button
+            onClick={() =>
+              this.warnsdorff(
+                this.props.board,
+                this.state.start,
+                this.props.updateBoard,
+                this.props.moveKnight,
+                this.state.speed,
+                this.iterate
+              )
+            }
+            id="b3"
+          >
+            Divide and Conquer
+          </button>
+          <button
+            onClick={() =>
+              this.warnsdorff(
+                this.props.board,
+                this.state.start,
+                this.props.updateBoard,
+                this.props.moveKnight,
+                this.state.speed,
+                this.iterate
+              )
+            }
+            id="b3"
+          >
+              Neural Network Solution
+          </button>
           <div />
           <div>
             <p className="speed-text">Speed: {this.state.speed} ms</p>

@@ -1,6 +1,6 @@
 import util from '../utils/utils';
 
-const backtrack = async (board, moves, updateBoard, moveKnight, speed, iterate) => {
+const backtrack = async (board, moves, updateBoard, moveKnight, speed, iterate, updateSpeed) => {
     await setTimeout(async () => {
 
         iterate()

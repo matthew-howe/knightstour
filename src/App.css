@@ -129,7 +129,7 @@ button:active {
 }
 
 .speed-text {
-    margin-left: 10%;
+    margin-left: 8%;
     font-family: 'Libre Baskerville';
 }
 
@@ -166,8 +166,9 @@ button:active {
 }
 
 .iterations {
-    margin-left: 15%;
+    margin-left: 12%;
     font-family: 'Libre Baskerville';
+    font-size: 20px;
 }
 
 /* Links: replicate underline that clears descenders */

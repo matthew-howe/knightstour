@@ -71,6 +71,13 @@ class utils {
 
         return count;
     }
+
+    mapNumToCoords(num) {
+        let y = Math.floor(num / 8);
+        let x = num % 8;
+        return [x, y]
+    }
+
 }
 
 let util = new utils();
