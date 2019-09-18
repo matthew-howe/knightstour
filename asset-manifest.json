@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/knights-tour/static/css/main.62fdb5dd.chunk.css",
-    "main.js": "/knights-tour/static/js/main.940d7139.chunk.js",
-    "main.js.map": "/knights-tour/static/js/main.940d7139.chunk.js.map",
+    "main.css": "/knights-tour/static/css/main.87a7cb61.chunk.css",
+    "main.js": "/knights-tour/static/js/main.3bd56000.chunk.js",
+    "main.js.map": "/knights-tour/static/js/main.3bd56000.chunk.js.map",
     "runtime~main.js": "/knights-tour/static/js/runtime~main.26087744.js",
     "runtime~main.js.map": "/knights-tour/static/js/runtime~main.26087744.js.map",
     "static/js/2.090b6ffa.chunk.js": "/knights-tour/static/js/2.090b6ffa.chunk.js",
     "static/js/2.090b6ffa.chunk.js.map": "/knights-tour/static/js/2.090b6ffa.chunk.js.map",
     "index.html": "/knights-tour/index.html",
-    "precache-manifest.f770138b230af60c70abf3f850143029.js": "/knights-tour/precache-manifest.f770138b230af60c70abf3f850143029.js",
+    "precache-manifest.60d7435d4a78d1442ec3b4dd4898229a.js": "/knights-tour/precache-manifest.60d7435d4a78d1442ec3b4dd4898229a.js",
     "service-worker.js": "/knights-tour/service-worker.js",
-    "static/css/main.62fdb5dd.chunk.css.map": "/knights-tour/static/css/main.62fdb5dd.chunk.css.map"
+    "static/css/main.87a7cb61.chunk.css.map": "/knights-tour/static/css/main.87a7cb61.chunk.css.map"
   }
 }
