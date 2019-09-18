@@ -4,8 +4,8 @@ html {
 }
 
 .img {
-    margin-top: 6em;
-    height: 400px;
+    margin-top: 8em;
+    height: 550px;
 }
 
 .middle {
@@ -29,8 +29,8 @@ p {
 }
 
 #board {
-  width: 640px;
-  height: 640px;
+  width: 960.5px;
+  height: 962px;
   margin: 35px;
 
   border: 1.5px solid black;
@@ -45,15 +45,13 @@ p {
     position: absolute;
 }
 
-@media only screen and (max-width: 965px) {
-    #img { display: none; }
-}
 
-@media only screen and (max-width: 748px) {
+@media only screen and (max-width: 850px) {
     #main { flex-direction: column; }
     .iterations { text-align: center; margin-top: 1em; margin-right: 2.5em;}
     .speed-text { text-align: center; margin-top: 1em; }
     #title { margin-left: 0%; }
+    #img { display: none; }
 }
 
 #buttons {

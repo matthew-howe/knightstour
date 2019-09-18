@@ -16,7 +16,7 @@ class utils {
             [pos[0] + 2, pos[1] + 1],
         ];
         let posMoves = movesArr.filter(move => {
-            return move[0] >= 0 && move[1] >= 0 && move[0] < 8 && move[1] < 8;
+            return move[0] >= 0 && move[1] >= 0 && move[0] < 12 && move[1] < 12;
         });
         return posMoves;
     }
@@ -31,12 +31,12 @@ class utils {
         
     boardVisited(moves) {
         // checks if every square has been visited
-        return moves.length === 63;
+        return moves.length === 143;
     }
 
     boardVisitedWarnsdorf(moves) {
         // adjusted for warnsdorf's moves length
-        return moves.length === 65;
+        return moves.length === 145;
     }
 
 
@@ -73,8 +73,8 @@ class utils {
     }
 
     mapNumToCoords(num) {
-        let y = Math.floor(num / 8);
-        let x = num % 8;
+        let y = Math.floor(num / 12);
+        let x = num % 12;
         return [x, y]
     }
 

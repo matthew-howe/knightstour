@@ -31,8 +31,8 @@ class Board extends Component {
   }
 
   renderSquare(i) {
-    let x = i % 8;
-    let y = Math.floor(i / 8);
+    let x = i % 12;
+    let y = Math.floor(i / 12);
     let black = (x + y) % 2 === 1;
     let knight;
     let visited;
@@ -65,7 +65,7 @@ class Board extends Component {
   render() {
     let squares = [];
 
-    for (let i = 0; i < 64; i++) {
+    for (let i = 0; i < 144; i++) {
       squares.push(this.renderSquare(i));
     }
     return (
