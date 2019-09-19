@@ -18,4 +18,4 @@ A visual exploration of local search algorithms which generate solutions to the 
   Divides the board into smaller pieces, constructing tours on each piece, and patching the pieces together.
 
   **Nueral Network Solution**  
-  _Coming Soon!_ Implements a neural network where every legal knight's move is represented by a neuron.
+  _Coming Soon!_
