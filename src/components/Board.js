@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { moveKnight, updateBoard } from '../store/board';
 import backtrack from '../algorithms/backtracking';
-import warnsdorff from '../algorithms/warnsdorff';
+import warnsdorf from '../algorithms/warnsdorf';
 
 class Board extends Component {
   constructor() {
@@ -14,7 +14,7 @@ class Board extends Component {
     };
 
     this.backtrack = backtrack.bind(this);
-    this.warnsdorff = warnsdorff.bind(this);
+    this.warnsdorf = warnsdorf.bind(this);
     this.iterate = this.iterate.bind(this)
   }
 
@@ -99,7 +99,7 @@ class Board extends Component {
           </button>
           <button
             onClick={() =>
-              this.warnsdorff(
+              this.warnsdorf(
                 this.props.board,
                 this.state.start,
                 this.props.updateBoard,
@@ -114,7 +114,7 @@ class Board extends Component {
           </button>
           <button
             onClick={() =>
-              this.warnsdorff(
+              this.warnsdorf(
                 this.props.board,
                 this.state.start,
                 this.props.updateBoard,
@@ -129,7 +129,7 @@ class Board extends Component {
           </button>
           <button
             onClick={() =>
-              this.warnsdorff(
+              this.warnsdorf(
                 this.props.board,
                 this.state.start,
                 this.props.updateBoard,
