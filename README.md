@@ -18,4 +18,4 @@ A visual exploration of local search algorithms which generate solutions to the 
   Divides the board into smaller pieces, constructing tours on each piece, and patching the pieces together.
 
   **Nueral Network Solution**  
-  Implements a neural network where every legal knight's move is represented by a neuron. Neurons are initialized to be either 1 or 0, where 1 implies the neuron is part of the solution. When the network converges it encodes either a knight's tour or a series of two or more independent circuits within the same board.
+  _Coming Soon!_ Implements a neural network where every legal knight's move is represented by a neuron.
