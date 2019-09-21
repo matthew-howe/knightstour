@@ -1,3 +1,76 @@
+const Grid6_6 =
+[
+    [[4,5], [5,6], [4,7], [4,7], [5,7], [6,7]],
+    [[3,4], [3,6], [0,3], [3,5], [0,6], [0,7]],
+    [[2,5], [1,4], [0,1], [3,4], [2,5], [1,6]],
+    [[2,5], [5,6], [4,7], [0,2], [1,5], [0,6]],
+    [[3,4], [1,4], [4,7], [4,7], [0,2], [1,7]],
+    [[2,3], [1,3], [1,0], [3,0], [0,2], [0,1]]
+];
+
+const Grid6_8 =
+[
+    [[4,5], [4,6], [4,7], [4,7], [4,6], [4,6], [5,7], [6,7]],
+    [[3,4], [3,6], [6,0], [0,4], [0,3], [0,3], [0,5], [0,7]],
+    [[2,5], [1,4], [0,5], [2,5], [2,5], [0,3], [2,5], [1,6]],
+    [[2,5], [2,6], [6,7], [0,6], [6,7], [5,6], [5,7], [1,6]],
+    [[3,4], [1,4], [3,7], [1,4], [1,3], [1,4], [2,7], [1,7]],
+    [[2,3], [1,2], [0,2], [0,2], [2,3], [0,3], [1,2], [0,1]]
+];
+
+const Grid8_8 =
+[
+    [[4,5], [5,6], [5,7], [4,7], [5,7], [4,7], [5,7], [6,7]],
+    [[3,5], [3,6], [0,3], [3,6], [3,6], [0,3], [5,6], [0,7]],
+    [[2,5], [1,6], [1,7], [1,5], [4,5], [1,3], [2,5], [1,6]],
+    [[2,3], [1,5], [2,5], [2,4], [6,7], [2,4], [0,5], [1,6]],
+    [[2,5], [1,6], [3,7], [4,5], [1,6], [0,1], [2,5], [0,1]],
+    [[3,5], [5,6], [1,4], [1,2], [4,5], [0,5], [2,5], [1,6]],
+    [[2,4], [1,4], [4,7], [2,7], [0,1], [4,7], [0,7], [1,7]],
+    [[2,3], [1,3], [0,1], [0,3], [0,3], [1,3], [1,2], [0,1]]
+];
+
+const Grid8_10 =
+[
+    [[4,5], [4,6], [4,7], [4,7], [4,7], [6,7], [4,7], [4,7], [5,7], [6,7]],
+    [[3,4], [3,6], [0,3], [0,3], [0,3], [0,3], [0,3], [3,4], [0,5], [0,6]],
+    [[2,4], [1,6], [0,6], [6,7], [2,4], [4,6], [5,7], [5,6], [2,5], [0,1]],
+    [[2,5], [3,5], [0,5], [4,6], [3,5], [5,7], [0,4], [0,7], [2,5], [1,7]],
+    [[2,5], [2,6], [2,7], [3,5], [2,4], [0,3], [2,7], [1,3], [0,1], [1,6]],
+    [[3,5], [1,6], [1,2], [1,6], [3,5], [1,7], [0,1], [4,5], [5,7], [1,6]],
+    [[2,4], [1,4], [4,7], [3,7], [1,4], [4,7], [3,7], [4,7], [2,7], [0,7]],
+    [[2,3], [1,3], [0,2], [0,3], [0,3], [1,3], [0,3], [0,3], [1,2], [0,1]]
+];
+
+const Grid10_10 =
+[
+    [[4,5], [4,6], [5,7], [4,6], [4,7], [6,7], [5,7], [4,7], [5,7], [6,7]],
+    [[3,4], [4,6], [0,3], [0,3], [3,5], [0,3], [0,3], [3,4], [5,6], [6,0]],
+    [[2,4], [1,6], [0,2], [0,1], [2,4], [6,7], [5,6], [1,6], [2,5], [0,1]],
+    [[2,4], [5,6], [0,6], [3,5], [4,5], [1,4], [0,4], [2,6], [2,5], [1,6]],
+    [[2,5], [4,5], [0,7], [4,5], [2,6], [2,5], [0,2], [0,1], [0,6], [1,6]],
+    [[2,3], [2,6], [1,7], [0,5], [1,7], [0,1], [2,6], [6,7], [2,6], [1,7]],
+    [[3,5], [1,6], [1,3], [2,7], [1,5], [3,7], [1,7], [2,3], [2,5], [6,7]],
+    [[2,5], [3,6], [5,6], [3,7], [1,3], [2,7], [2,6], [2,3], [5,6], [6,7]],
+    [[2,4], [1,3], [4,7], [3,4], [4,7], [1,7], [4,7], [3,4], [2,7], [1,7]],
+    [[2,3], [1,2], [0,3], [1,3], [0,3], [0,2], [0,3], [2,3], [0,2], [0,1]]
+];
+
+const Grid10_12 =
+[
+    [[4,5], [4,6], [6,7], [4,7], [5,6], [4,7], [5,7], [4,7], [4,6], [4,7], [5,6], [6,7]],
+    [[3,5], [3,6], [0,7], [0,3], [3,6], [0,3], [6,7], [0,3], [5,6], [0,3], [0,5], [0,6]],
+    [[2,3], [1,2], [6,7], [2,6], [3,4], [1,7], [5,6], [1,2], [5,7], [2,4], [2,5], [1,6]],
+    [[2,3], [1,6], [4,5], [2,3], [4,7], [2,7], [0,3], [2,7], [5,7], [1,6], [2,5], [0,1]],
+    [[4,5], [2,6], [2,3], [3,5], [0,4], [2,3], [0,3], [1,7], [4,6], [1,7], [2,5], [1,6]],
+    [[2,4], [4,5], [0,7], [1,6], [4,6], [3,6], [0,7], [3,6], [2,5], [1,6], [0,7], [1,6]],
+    [[2,3], [1,6], [0,7], [0,5], [1,3], [4,6], [0,7], [2,4], [3,7], [4,5], [2,5], [1,6]],
+    [[3,5], [5,6], [1,2], [2,7], [2,3], [5,6], [2,3], [0,5], [2,7], [0,1], [2,5], [0,6]],
+    [[2,4], [3,4], [4,7], [4,7], [1,2], [4,7], [3,4], [4,7], [4,7], [4,7], [1,2], [1,7]],
+    [[2,3], [1,3], [0,1], [0,3], [0,2], [0,3], [1,3], [0,3], [0,1], [0,3], [0,2], [0,1]]
+];
+
+
 class utils {
 
     findMoves(pos) {
@@ -114,8 +187,8 @@ const divideAndConquer = async (board, moves, updateBoard, moveKnight, speed, it
       [[2,3], [1,3], [1,0], [3,0], [0,2], [0,1]]
     ]
 
-    const offSetTypeOriginArr = [3, 7, 6, 2, 7, 3, 2, 6]
-    const offsetTypeSubstitueArr = [4, 3, 7, 4, 0, 7, 3, 0]
+    const offsetTypeOriginArr = [3, 7, 6, 2, 7, 3, 2, 6]
+    const offsetTypeSubstituteArr = [4, 3, 7, 4, 0, 7, 3, 0]
     const offsetDirArr = [
       [-2,-1], [-1,-2], [1,-2], [2, -1], [2, 1], [1, 2], [-1, 2], [-2, 1]
     ]
@@ -208,7 +281,7 @@ const divideAndConquer = async (board, moves, updateBoard, moveKnight, speed, it
       let pointAttribute, gridSizeX, gridSizeY, gridLocX, gridLocY
       getPointGridAttribute(n, x, y, pointAttribute, gridSizeX, gridSizeY, gridLocX, gridLocY)
 
-      const shoudReverse = gridSizeX < gridSizeY
+      const shouldReverse = gridSizeX < gridSizeY
 
       if (shouldReverse) {
         /* Swap gridSizeX and gridSizeY */ {
@@ -226,12 +299,12 @@ const divideAndConquer = async (board, moves, updateBoard, moveKnight, speed, it
 
       let p;
 
-      if (gridSizeX == 6 && gridSizeY == 6) p = Grid6_6[gridLocY][gridLocX];
-      else if (gridSizeX == 8 && gridSizeY == 6) p = Grid6_8[gridLocY][gridLocX];
-      else if (gridSizeX == 8 && gridSizeY == 8) p = Grid8_8[gridLocY][gridLocX];
-      else if (gridSizeX == 10 && gridSizeY == 8) p = Grid8_10[gridLocY][gridLocX];
-      else if (gridSizeX == 10 && gridSizeY == 10) p = Grid10_10[gridLocY][gridLocX];
-      else if (gridSizeX == 12 && gridSizeY == 10)  p = Grid10_12[gridLocY][gridLocX];
+      if (gridSizeX === 6 && gridSizeY === 6) p = Grid6_6[gridLocY][gridLocX];
+      else if (gridSizeX === 8 && gridSizeY === 6) p = Grid6_8[gridLocY][gridLocX];
+      else if (gridSizeX === 8 && gridSizeY === 8) p = Grid8_8[gridLocY][gridLocX];
+      else if (gridSizeX === 10 && gridSizeY === 8) p = Grid8_10[gridLocY][gridLocX];
+      else if (gridSizeX === 10 && gridSizeY === 10) p = Grid10_10[gridLocY][gridLocX];
+      else if (gridSizeX === 12 && gridSizeY === 10)  p = Grid10_12[gridLocY][gridLocX];
       else console.log('error in getPontGridAttribute grid size')
 
 
@@ -247,8 +320,8 @@ const divideAndConquer = async (board, moves, updateBoard, moveKnight, speed, it
       if (pointAttribute !== 8) {
 
         let pathOrigin = offsetTypeOriginArr[pointAttribute]
-        let pathSubstitut = offsetTypeSubstituteArr[pointAttribute]
-        if (next_a_offsetType === paathOrigin) next_a_offsetType === pathSubstitute
+        let pathSubstitute = offsetTypeSubstituteArr[pointAttribute]
+        if (next_a_offsetType === pathOrigin) next_a_offsetType = pathSubstitute
         else if (next_b_offsetType === pathOrigin) next_b_offsetType = pathSubstitute
         else console.log('pathOrigin must always be one of next_a_offsetType and next_b_offset')
       }
@@ -267,7 +340,7 @@ const divideAndConquer = async (board, moves, updateBoard, moveKnight, speed, it
       getPossibleNextPointOffsetType(n, x, y, next_a_offsetType, next_b_offsetType)
 
       let p_a = offsetDirArr[next_a_offsetType]
-      let p_b = offsetDir[next_b_offsetType]
+      let p_b = offsetDirArr[next_b_offsetType]
 
       next_a_x_p = x + p_a[0]
       next_a_y_p = y + p_a[1]
@@ -296,6 +369,7 @@ const divideAndConquer = async (board, moves, updateBoard, moveKnight, speed, it
       } else { console.log('error in getNextPoint') }
     }
 
+    
 
 
 
@@ -311,10 +385,14 @@ const divideAndConquer = async (board, moves, updateBoard, moveKnight, speed, it
 
       return pointSerialize(n, next_x, next_y)
     }
+    console.log(getNextPointSerialize(12, 2, 0, 1, 0))
       
      
 
   }, 80)
 }
+
+divideAndConquer()
+
 
 // export default divideAndConquer
