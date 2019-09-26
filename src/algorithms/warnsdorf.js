@@ -3,14 +3,9 @@ import util from '../utils/utils';
 const warnsdorf = async (board, moves, updateBoard, moveKnight, speed, iterate) => {
     await setTimeout(async () => {
         let curBoard = board; 
-
         if (util.boardVisitedWarnsdorf(moves)) return true;
-        
         iterate()
 
-
-        // get the current position of the knight and the
-        // possible moves for it to make
         const lastMove = moves[moves.length - 1];
         let possibleMoves = util.findMoves(lastMove);
 
