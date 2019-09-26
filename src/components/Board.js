@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { moveKnight, updateBoard } from '../store/board';
 import backtrack from '../algorithms/backtracking';
 import warnsdorf from '../algorithms/warnsdorf';
+import divideandconquer from '../algorithms/divideandconquer';
 
 class Board extends Component {
   constructor() {
@@ -16,6 +17,7 @@ class Board extends Component {
     this.backtrack = backtrack.bind(this);
     this.warnsdorf = warnsdorf.bind(this);
     this.iterate = this.iterate.bind(this)
+    this.divideandconquer = divideandconquer.bind(this);
   }
 
   handleChange(e) {
@@ -114,9 +116,10 @@ class Board extends Component {
           </button>
           <button
             onClick={() =>
-              this.warnsdorf(
+              this.divideandconquer(
                 this.props.board,
-                this.state.start,
+                [2,0],
+                [0,1],
                 this.props.updateBoard,
                 this.props.moveKnight,
                 this.state.speed,
@@ -129,14 +132,7 @@ class Board extends Component {
           </button>
           <button
             onClick={() =>
-              this.warnsdorf(
-                this.props.board,
-                this.state.start,
-                this.props.updateBoard,
-                this.props.moveKnight,
-                this.state.speed,
-                this.iterate
-              )
+              alert('coming soon!')
             }
             id="b3"
           >
