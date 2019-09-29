@@ -1,6 +1,14 @@
 import util from '../utils/utils';
 
-const warnsdorf = async (board, moves, updateBoard, moveKnight, speed, iterate) => {
+
+// @param {array[][]} board - 2d array of the board
+// @param {array[][] moves - 2d array of the moves so far
+// @param {object{}} updateBoard - function to update board state
+// @param {object{}} moveKnight - function to update knight state
+// @param {integer} speed - ms speed for each iteration
+// @param {void} iterate - function to change local iteration state
+// @param {object{}} updateSpeed - function to update speed state
+const warnsdorf = async (board, moves, updateBoard, moveKnight, speed, iterate, updateSpeed) => {
     await setTimeout(async () => {
         let curBoard = board; 
         if (util.boardVisitedWarnsdorf(moves)) return true;
