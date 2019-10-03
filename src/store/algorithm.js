@@ -25,7 +25,7 @@ export const updateTemp = newTemp => ({
 
 const initialState = {
   script: null,
-  speed: 125,
+  speed: 80,
   temp: null
 }
 
