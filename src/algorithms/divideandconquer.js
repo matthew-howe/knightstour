@@ -57,14 +57,14 @@ function getNextPoint(x, y, lastX, lastY) {
 
 
     pointAttribute =
-                blkChoiceX === 1 && blkChoiceY === 1 && gridLocX === gridSizeX - 3 && gridLocY === gridSizeY - 1 ? 0 :
-                  blkChoiceX === 1 && blkChoiceY === 1 && gridLocX === gridSizeX - 1 && gridLocY === gridSizeY - 2 ? 1 :
-                    blkChoiceX === 2 && blkChoiceY === 1 && gridLocX === 1 && gridLocY === gridSizeY - 3 ? 2 :
-                      blkChoiceX === 2 && blkChoiceY === 1 && gridLocX === 0 && gridLocY === gridSizeY - 1 ? 3 :
-                        blkChoiceX === 2 && blkChoiceY === 2 && gridLocX === 2 && gridLocY === 0 ? 4 :
-                          blkChoiceX === 2 && blkChoiceY === 2 && gridLocX === 0 && gridLocY === 1 ? 5 :
-                            blkChoiceX === 1 && blkChoiceY === 2 && gridLocX === gridSizeX - 2 && gridLocY === 2 ? 6 :
-                              blkChoiceX === 1 && blkChoiceY === 2 && gridLocX === gridSizeX - 1 && gridLocY === 0 ? 7 : pointAttribute
+      blkChoiceX === 1 && blkChoiceY === 1 && gridLocX === gridSizeX - 3 && gridLocY === gridSizeY - 1 ? 0 :
+      blkChoiceX === 1 && blkChoiceY === 1 && gridLocX === gridSizeX - 1 && gridLocY === gridSizeY - 2 ? 1 :
+                  blkChoiceX === 2 && blkChoiceY === 1 && gridLocX === 1 && gridLocY === gridSizeY - 3 ? 2 :
+                  blkChoiceX === 2 && blkChoiceY === 1 && gridLocX === 0 && gridLocY === gridSizeY - 1 ? 3 :
+                              blkChoiceX === 2 && blkChoiceY === 2 && gridLocX === 2 && gridLocY === 0 ? 4 :
+                              blkChoiceX === 2 && blkChoiceY === 2 && gridLocX === 0 && gridLocY === 1 ? 5 :
+                  blkChoiceX === 1 && blkChoiceY === 2 && gridLocX === gridSizeX - 2 && gridLocY === 2 ? 6 :
+                  blkChoiceX === 1 && blkChoiceY === 2 && gridLocX === gridSizeX - 1 && gridLocY === 0 ? 7 : pointAttribute
 
 
     } while (!((gridSizeX <= 12 && gridSizeY <= 12) &&
@@ -94,7 +94,7 @@ function getNextPoint(x, y, lastX, lastY) {
 
     if (shouldReverse) {
       /* swap gridSizeX and gridSizeY */
-      const t = gridSizeX
+      let t = gridSizeX
       gridSizeX = gridSizeY
       gridSizeY = t
 
