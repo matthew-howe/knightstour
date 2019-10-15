@@ -1,4 +1,4 @@
-import util from '../utils/utils';
+import util from "../utils/utils";
 
 // @param {array[][]} board - 2d array of the board
 // @param {array[][] moves - 2d array of the moves so far
@@ -43,15 +43,10 @@ const backtrack = async (
         ) {
           return true;
         }
-
-
       }
     }
 
-    console.log('ended', 
-      moves[moves.length - 1]
-    )
-
+    console.log("ended", moves[moves.length - 1]);
   }, 10);
 };
 
