@@ -202,7 +202,7 @@ function getNextPointSerialize(x, y, lastX, lastY) {
 
 
 const divideandconquer =  async (board, curmove, lastmove, updateBoard, moveKnight, speed, iterate, updateSpeed) => {
-  await setTimeout(async () => {
+  return await setTimeout(async () => {
       
     if (curmove[0] === 0 && curmove[1] === 1) return true;
     

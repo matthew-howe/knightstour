@@ -11,7 +11,8 @@ class Board extends Component {
     this.state = {
       iter: 0,
       speed: 80,
-      start: [[0,0]]
+      start: [[0,0]],
+      timer: {}
     };
 
     this.backtrack = backtrack.bind(this);
@@ -30,6 +31,38 @@ class Board extends Component {
 
   updateSpeed() {
       return this.state.speed;
+  }
+
+  runAlgo(algo) {
+      clearTimeout(this.state.timeout);
+
+      this.props.moveKnight([0, 0])
+
+      this.props.updateBoard([
+        [0,0,0,0,0,0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0,0,0,0,0,0],
+      ])
+
+      let timer = algo(
+        this.props.board,
+        this.state.start,
+        this.props.updateBoard,
+        this.props.moveKnight,
+        this.state.speed,
+        this.iterate
+      )
+
+      this.setState({ timer: timer })
   }
 
   renderSquare(i) {
@@ -84,32 +117,13 @@ class Board extends Component {
     </div>
         <div id="buttons">
           <button
-            onClick={() =>
-              this.backtrack(
-                this.props.board,
-                this.state.start,
-                this.props.updateBoard,
-                this.props.moveKnight,
-                this.state.speed,
-                this.iterate,
-                this.updateSpeed
-              ) 
-            }
+            onClick={() => this.runAlgo(this.backtrack) }
             id="b4"
           >
             Brute Force Iterations
           </button>
           <button
-            onClick={() =>
-              this.warnsdorf(
-                this.props.board,
-                this.state.start,
-                this.props.updateBoard,
-                this.props.moveKnight,
-                this.state.speed,
-                this.iterate
-              )
-            }
+            onClick={() => this.runAlgo(this.warnsdorf)}
             id="b3"
           >
             Warnsdorf's Rule
