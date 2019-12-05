@@ -1,14 +1,6 @@
-html {
-    height: 100%;
-    z-index: -2;
-}
-
 .img {
     margin-top: 7.5em;
     height: 420px;
-}
-
-.middle {
 }
 
 #title {
@@ -36,10 +28,12 @@ p {
   border: 1.5px solid black;
   zoom: 0.65;
   -moz-transform: scale(0.65);
+  -moz-transform-origin: 0 0;
 }
 
 #main {
     display: flex;
+    height: 600px;
     flex-direction: row-reverse;
     justify-content: space-evenly;
     position: absolute;
@@ -61,6 +55,10 @@ p {
   margin-bottom: 2%;
   padding: 8px 20px 10px 50px;
   justify-content: space-around;
+}
+
+.middle  {
+  width: 550px;
 }
 
 button {
