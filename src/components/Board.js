@@ -1,68 +1,42 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { moveKnight, updateBoard } from '../store/board';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {moveKnight, updateBoard} from '../store/board';
 import backtrack from '../algorithms/backtracking';
 import warnsdorf from '../algorithms/warnsdorf';
 import divideandconquer from '../algorithms/divideandconquer';
+import runScript from '../store/board';
 
 class Board extends Component {
   constructor() {
     super();
     this.state = {
-      iter: 0,
       speed: 80,
-      start: [[0,0]],
-      timer: {}
+      start: [[0, 0]],
+      curMove: [2,0],
+      lastMove: [0,1]
     };
 
     this.backtrack = backtrack.bind(this);
     this.warnsdorf = warnsdorf.bind(this);
-    this.iterate = this.iterate.bind(this)
+
     this.divideandconquer = divideandconquer.bind(this);
   }
 
   handleChange(e) {
-    this.setState({ speed: e.target.value });
-  }
-
-  iterate() {
-      this.setState({ iter:  this.state.iter + 1 })
+    this.setState({speed: e.target.value});
   }
 
   updateSpeed() {
-      return this.state.speed;
+    return this.state.speed;
   }
 
   runAlgo(algo) {
-      clearTimeout(this.state.timeout);
-
-      this.props.moveKnight([0, 0])
-
-      this.props.updateBoard([
-        [0,0,0,0,0,0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0,0,0,0,0,0],
-      ])
-
-      let timer = algo(
-        this.props.board,
-        this.state.start,
-        this.props.updateBoard,
-        this.props.moveKnight,
-        this.state.speed,
-        this.iterate
-      )
-
-      this.setState({ timer: timer })
+    algo(
+      this.props.board,
+      this.state.start,
+      this.props.updateBoard,
+      this.props.moveKnight,
+    );
   }
 
   renderSquare(i) {
@@ -104,53 +78,46 @@ class Board extends Component {
       squares.push(this.renderSquare(i));
     }
     return (
-      <div id="main" >
-          <div id="img">
-              <img className="img" alt="knight" src="https://i.imgur.com/rDN4qFr.jpg" />
+      <div id="main">
+        <div id="img">
+          <img
+            className="img"
+            alt="knight"
+            src="https://i.imgur.com/rDN4qFr.jpg"
+          />
+        </div>
+        <div className="middle">
+          <div id="title">
+            <h1>Knight's Tour</h1>
+            <p>
+              By <a href="http://matthewhowe.net">Matthew Howe</a>
+            </p>
           </div>
-          <div className="middle">
-      <div id="title">
-        <h1>Knight's Tour</h1>
-        <p>By <a href="http://matthewhowe.net">Matthew Howe</a></p>
-      </div>
-        <div id="board">{squares}</div>
-    </div>
+          <div id="board">{squares}</div>
+        </div>
         <div id="buttons">
-          <button
-            onClick={() => this.runAlgo(this.backtrack) }
-            id="b4"
-          >
+          <button onClick={() => this.runAlgo(this.backtrack)} id="b4">
             Brute Force Iterations
           </button>
-          <button
-            onClick={() => this.runAlgo(this.warnsdorf)}
-            id="b3"
-          >
+          <button onClick={() => this.runAlgo(this.warnsdorf)} id="b3">
             Warnsdorf's Rule
           </button>
           <button
             onClick={() =>
               this.divideandconquer(
                 this.props.board,
-                [2,0],
-                [0,1],
+                this.state.curMove,
+                this.state.lastMove,
                 this.props.updateBoard,
-                this.props.moveKnight,
-                this.state.speed,
-                this.iterate
+                this.props.moveKnight
+
               )
             }
-            id="b3"
-          >
+            id="b3">
             Divide and Conquer
           </button>
-          <button
-            onClick={() =>
-              alert('coming soon!')
-            }
-            id="b3"
-          >
-              Neural Network Solution
+          <button onClick={() => runScript()} id="b3">
+            Neural Network Solution
           </button>
           <div />
           <div>
@@ -183,9 +150,7 @@ const mapState = state => ({
 const mapDispatch = dispatch => ({
   moveKnight: knight => dispatch(moveKnight(knight)),
   updateBoard: newBoard => dispatch(updateBoard(newBoard)),
+  runScript: () => dispatch(runScript()),
 });
 
-export default connect(
-  mapState,
-  mapDispatch
-)(Board);
+export default connect(mapState, mapDispatch)(Board);

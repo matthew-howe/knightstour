@@ -196,31 +196,29 @@ function getNextPointSerialize(x, y, lastX, lastY) {
   return pointSerialize(nextX, nextY)
 }
 
-// export default getNextPoint;
 
-
-
-
-const divideandconquer =  async (board, curmove, lastmove, updateBoard, moveKnight, speed, iterate, updateSpeed) => {
-  return await setTimeout(async () => {
-      
-    if (curmove[0] === 0 && curmove[1] === 1) return true;
-    
-    iterate() 
+// TODO: Remove dummy loggers
+const ub = (b) => console.log('new board ', b);
+const mk = (m) => console.log('knight moves ', m);
+const divideandconquer =  async (board, curmove, lastmove, updateBoard = ub, moveKnight = mk) => {
+    if (curmove[0] === 0 && curmove[1] === 1) {
+				console.log('board conquered');
+				return;
+		}
     let curBoard = board;
     curBoard[curmove[0]][curmove[1]] = 1
 
     const nextmove = getNextPoint(curmove[0], curmove[1], lastmove[0], lastmove[1])
+								if (curBoard[lastmove[0]][lastmove[1]] === 0) {
+								curBoard[lastmove[0]][lastmove[1]] = 1;
+						}
+		lastmove[0] = curmove[0];
+		lastmove[1] = curmove[1];
+		curmove[0] = nextmove[0];
+		curmove[1] = nextmove[1];
     curBoard[nextmove[0]][nextmove[1]] = 1
     moveKnight(nextmove)
     updateBoard(curBoard)
-
-  console.log(curBoard)
-
-    if (divideandconquer(curBoard, nextmove, curmove, updateBoard, moveKnight, speed, iterate, updateSpeed)) { return true }
-
-    return false
-  }, speed)
 }
 
-export default divideandconquer
+export default divideandconquer;

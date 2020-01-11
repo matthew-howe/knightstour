@@ -46,7 +46,7 @@ const backtrack = async (
       }
     }
 
-    console.log("ended", moves[moves.length - 1]);
+    console.log("ended", "last move: ",  moves[moves.length - 1]);
   }, 10);
 };
 
