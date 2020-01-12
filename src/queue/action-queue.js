@@ -1,9 +1,14 @@
-const queue = []
+let queue = []
 let interval = null
 let lastTick = null
 let tickInterval = null
 
 class ActionQueue {
+
+	getQueue() {
+		return queue;
+	}
+
 	enqueue(fn) {
 		queue.push(fn);
 	}
@@ -39,14 +44,14 @@ class ActionQueue {
 		queue = [];
 	}
 
-	moduleteSpeed(speed) {
+	modulateSpeed(speed) {
 		lastTick = lastTick || Date.now();
 		clearInterval(tickInterval);
 		this.initTickInterval(speed);
 	}
 
 	initTickInterval(speed) {
-		tickInterval = setInterval(tick.bind(null, speed), 1);
+		tickInterval = setInterval(this.tick.bind(null, speed), 1);
 	}
 
 	tick(speed) {
@@ -64,15 +69,5 @@ class ActionQueue {
 }
 
 
-const aq = new ActionQueue()
-aq.enqueue(() => console.log('function executed!'));
-aq.enqueue(() => console.log('function executed!'));
-aq.enqueue(() => console.log('function executed!'));
-aq.enqueue(() => console.log('function executed!'));
-aq.enqueue(() => console.log('function executed!'));
-aq.enqueue(() => console.log('function executed!'));
-
-aq.startQueueing(500);
-
-
-console.log(queue);
+const actionQueue = new ActionQueue()
+export default actionQueue;

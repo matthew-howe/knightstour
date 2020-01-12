@@ -36,7 +36,7 @@ class utils {
 
     boardVisitedWarnsdorf(moves) {
         // adjusted for warnsdorf's moves length
-        return moves.length === 145;
+        return moves.length === 143;
     }
 
 

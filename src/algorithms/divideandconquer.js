@@ -1,3 +1,5 @@
+import actionQueue from '../queue/action-queue'
+
 // returns the coordinates of the next move as an array [x, y]
 // @param {integer} x - x position of knight
 // @param {integer} y - y position of knight
@@ -123,15 +125,6 @@ function getNextPoint(x, y, lastX, lastY) {
       }
     }
 
-      
-    console.log('\n', 'gridSizeX: ', gridSizeX, '\n',
-      'gridSizeY: ', gridSizeY,'\n',
-      'gridLocX: ', gridLocX, '\n',
-      'gridLocY: ', gridLocY, '\n',
-      'pointAttribute: ', pointAttribute,'\n',
-      'p: ', p,'\n',
-      'next_a_offsetType: ', next_a_offsetType,'\n',
-      'next_b_offsetType: ', next_b_offsetType,'\n')
 
     return [gridSizeX, gridSizeY, gridLocX, gridLocY,
       pointAttribute, p, next_a_offsetType, next_b_offsetType]
@@ -150,13 +143,7 @@ function getNextPoint(x, y, lastX, lastY) {
     let next_b_x_p = x + p_b[0]
     let next_b_y_p = y + p_b[1]
 
-    console.log('\n', 'p_a: ', p_a, '\n',
-      'x: ', x, 'y: ', y,'\n',
-      'p_b: ', p_b,'\n',
-      'next_a_x_p: ', next_a_x_p,'\n',
-      'next_a_y_p: ', next_a_y_p,'\n',
-      'next_b_x_p: ', next_b_x_p,'\n',
-      'next_b_y_p: ', next_b_y_p,'\n')
+
 
     return [p_b, next_a_x_p, next_a_y_p, next_b_x_p, next_b_y_p]
   }
@@ -200,8 +187,20 @@ function getNextPointSerialize(x, y, lastX, lastY) {
 // TODO: Remove dummy loggers
 const ub = (b) => console.log('new board ', b);
 const mk = (m) => console.log('knight moves ', m);
-const divideandconquer =  async (board, curmove, lastmove, updateBoard = ub, moveKnight = mk) => {
-    if (curmove[0] === 0 && curmove[1] === 1) {
+const divideandconquer =  async (
+			board, 
+			curmove, 
+			lastmove, 
+			updateBoard, 
+			moveKnight,
+			updateCurmove,
+			updateLastmove
+		) => {
+		if (actionQueue.length > 143) {
+			console.log('board conquered');
+			return;
+		}
+    if (curmove[0] === 1 && curmove[1] === 0) {
 				console.log('board conquered');
 				return;
 		}
@@ -212,13 +211,20 @@ const divideandconquer =  async (board, curmove, lastmove, updateBoard = ub, mov
 								if (curBoard[lastmove[0]][lastmove[1]] === 0) {
 								curBoard[lastmove[0]][lastmove[1]] = 1;
 						}
-		lastmove[0] = curmove[0];
-		lastmove[1] = curmove[1];
-		curmove[0] = nextmove[0];
-		curmove[1] = nextmove[1];
-    curBoard[nextmove[0]][nextmove[1]] = 1
-    moveKnight(nextmove)
-    updateBoard(curBoard)
+		actionQueue.enqueue(() => {
+			moveKnight(nextmove)
+			updateBoard(curBoard)
+		})
+
+		curBoard[nextmove[0]][nextmove[1]] = 1
+
+		if (divideandconquer(
+			curBoard,
+			nextmove, curmove, updateBoard, moveKnight,
+			updateCurmove, updateLastmove
+		)) return true;
+		else return false
+		
 }
 
 export default divideandconquer;
