@@ -1,69 +1,74 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { moveKnight, updateBoard } from '../store/board';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {moveKnight, updateBoard, addMove, updateCurmove, updateLastmove, runScript, changeSpeed} from '../store/board';
 import backtrack from '../algorithms/backtracking';
 import warnsdorf from '../algorithms/warnsdorf';
 import divideandconquer from '../algorithms/divideandconquer';
+import actionQueue from '../queue/action-queue';
 
 class Board extends Component {
   constructor() {
     super();
     this.state = {
-      iter: 0,
       speed: 80,
-      start: [[0,0]],
-      timer: {}
+      start: [[0, 0]],
+      curMove: [2,0],
+      lastMove: [0,1]
     };
 
     this.backtrack = backtrack.bind(this);
     this.warnsdorf = warnsdorf.bind(this);
-    this.iterate = this.iterate.bind(this)
     this.divideandconquer = divideandconquer.bind(this);
   }
 
   handleChange(e) {
-    this.setState({ speed: e.target.value });
+			
+			actionQueue.clearQueueInterval();
+			actionQueue.modulateSpeed(e.target.value);
+			
+			this.props.changeSpeed(e.target.value);
+			this.setState({speed: e.target.value});
+
+			actionQueue.changeSpeed(e.target.value);
   }
 
-  iterate() {
-      this.setState({ iter:  this.state.iter + 1 })
-  }
+	run(algo) {
+			actionQueue.clear();
+			let board = [
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  ]
+		let moves = [[0,0]]	
+		let curMove = [0,2]
+		let lastMove = [1,0]
 
-  updateSpeed() {
-      return this.state.speed;
-  }
+		
+		this.props.updateCurmove(curMove);
+		this.props.updateLastmove(lastMove);
+		this.props.updateBoard(board);
+		this.props.moveKnight([0,0]);
 
-  runAlgo(algo) {
-      clearTimeout(this.state.timeout);
 
-      this.props.moveKnight([0, 0])
+		if (algo === 'warnsdorf') {
+			warnsdorf(this.props.board, this.props.moves, this.props.updateBoard,
+			 this.props.moveKnight, this.props.addMove);
+		} else {
+			divideandconquer(this.props.board, this.props.curMove, this.props.lastMove,
+										this.props.updateBoard, this.props.moveKnight, this.props.updateCurmove, this.props.updateLastmove)
+		}
+		actionQueue.startQueueing(this.props.speed);
 
-      this.props.updateBoard([
-        [0,0,0,0,0,0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0,0,0,0,0,0],
-      ])
-
-      let timer = algo(
-        this.props.board,
-        this.state.start,
-        this.props.updateBoard,
-        this.props.moveKnight,
-        this.state.speed,
-        this.iterate
-      )
-
-      this.setState({ timer: timer })
-  }
+	}
 
   renderSquare(i) {
     let x = i % 12;
@@ -86,12 +91,12 @@ class Board extends Component {
       )
     ) : black ? (
       visited ? (
-        <div key={i} className="black square visited" />
+        <div key={i} className="black square " />
       ) : (
         <div key={i} className="black square" />
       )
     ) : visited ? (
-      <div key={i} className="white square visited" />
+      <div key={i} className="white square " />
     ) : (
       <div key={i} className="white square" />
     );
@@ -104,53 +109,35 @@ class Board extends Component {
       squares.push(this.renderSquare(i));
     }
     return (
-      <div id="main" >
-          <div id="img">
-              <img className="img" alt="knight" src="https://i.imgur.com/rDN4qFr.jpg" />
+      <div id="main">
+        <div id="img">
+          <img
+            className="img"
+            alt="knight"
+            src="https://i.imgur.com/rDN4qFr.jpg"
+          />
+        </div>
+        <div className="middle">
+          <div id="title">
+            <h1>Knight's Tour</h1>
+            <p>
+              By <a href="http://matthewhowe.net">Matthew Howe</a>
+            </p>
           </div>
-          <div className="middle">
-      <div id="title">
-        <h1>Knight's Tour</h1>
-        <p>By <a href="http://matthewhowe.net">Matthew Howe</a></p>
-      </div>
-        <div id="board">{squares}</div>
-    </div>
+          <div id="board">{squares}</div>
+        </div>
         <div id="buttons">
-          <button
-            onClick={() => this.runAlgo(this.backtrack) }
-            id="b4"
-          >
-            Brute Force Iterations
-          </button>
-          <button
-            onClick={() => this.runAlgo(this.warnsdorf)}
-            id="b3"
-          >
+
+          <button onClick={() => this.run('warnsdorf')} id="b3">
             Warnsdorf's Rule
           </button>
           <button
-            onClick={() =>
-              this.divideandconquer(
-                this.props.board,
-                [2,0],
-                [0,1],
-                this.props.updateBoard,
-                this.props.moveKnight,
-                this.state.speed,
-                this.iterate
-              )
-            }
-            id="b3"
-          >
+            onClick={() => this.run()}
+            id="b3">
             Divide and Conquer
           </button>
-          <button
-            onClick={() =>
-              alert('coming soon!')
-            }
-            id="b3"
-          >
-              Neural Network Solution
+          <button onClick={() => this.run()} id="b3">
+            Neural Network Solution
           </button>
           <div />
           <div>
@@ -175,17 +162,23 @@ class Board extends Component {
 }
 
 const mapState = state => ({
+	lastMove: state.board.lastMove,
+	moves: state.board.moves,
+	curMove: state.board.curMove,
   board: state.board.board,
   knight: state.board.knight,
   iterations: state.board.iterations,
+	speed: state.board.speed
 });
 
 const mapDispatch = dispatch => ({
   moveKnight: knight => dispatch(moveKnight(knight)),
   updateBoard: newBoard => dispatch(updateBoard(newBoard)),
+  runScript: () => dispatch(runScript()),
+  addMove: move => dispatch(addMove(move)),
+  updateCurmove: move => dispatch(updateCurmove(move)),
+  updateLastmove: move => dispatch(updateLastmove(move)),
+  changeSpeed: speed => dispatch(changeSpeed(speed))
 });
 
-export default connect(
-  mapState,
-  mapDispatch
-)(Board);
+export default connect(mapState, mapDispatch)(Board);

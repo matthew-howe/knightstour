@@ -1,13 +1,13 @@
-import {createStore, combineReducers, applyMiddleware} from 'redux'
-import {createLogger} from 'redux-logger'
-import {composeWithDevTools} from 'redux-devtools-extension'
-import board from './board'
-import algorithm from './algorithm'
+import {createStore, combineReducers, applyMiddleware} from 'redux';
+import {createLogger} from 'redux-logger';
+import {composeWithDevTools} from 'redux-devtools-extension';
+import board from './board';
+import thunk from 'redux-thunk';
 
-const reducer = combineReducers({board, algorithm})
+const reducer = combineReducers({board});
 const middleware = composeWithDevTools(
-  applyMiddleware(createLogger({collapsed: true}))
-)
-const store = createStore(reducer, middleware)
+  applyMiddleware(createLogger({collapsed: true}, thunk)),
+);
+const store = createStore(reducer, middleware);
 
-export default store
+export default store;
