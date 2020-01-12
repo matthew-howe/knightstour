@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {moveKnight, updateBoard, addMove, updateCurmove, updateLastmove, runScript} from '../store/board';
+import {moveKnight, updateBoard, addMove, updateCurmove, updateLastmove, runScript, changeSpeed} from '../store/board';
 import backtrack from '../algorithms/backtracking';
 import warnsdorf from '../algorithms/warnsdorf';
 import divideandconquer from '../algorithms/divideandconquer';
@@ -22,11 +22,14 @@ class Board extends Component {
   }
 
   handleChange(e) {
-    this.setState({speed: e.target.value});
-  }
+			
+			actionQueue.clearQueueInterval();
+			actionQueue.modulateSpeed(e.target.value);
+			
+			this.props.changeSpeed(e.target.value);
+			this.setState({speed: e.target.value});
 
-  updateSpeed() {
-    return this.state.speed;
+			actionQueue.changeSpeed(e.target.value);
   }
 
 	run(algo) {
@@ -66,16 +69,6 @@ class Board extends Component {
 		actionQueue.startQueueing(this.props.speed);
 
 	}
-
-  runAlgo(algo) {
-    algo(
-      this.props.board,
-      this.props.moves,
-      this.props.updateBoard,
-      this.props.moveKnight,
-      this.props.addMove
-    );
-  }
 
   renderSquare(i) {
     let x = i % 12;
@@ -185,6 +178,7 @@ const mapDispatch = dispatch => ({
   addMove: move => dispatch(addMove(move)),
   updateCurmove: move => dispatch(updateCurmove(move)),
   updateLastmove: move => dispatch(updateLastmove(move)),
+  changeSpeed: speed => dispatch(changeSpeed(speed))
 });
 
 export default connect(mapState, mapDispatch)(Board);

@@ -15,6 +15,7 @@ const ADD_MOVE = 'ADD_MOVE';
 const UPDATE_CURMOVE = 'UPDATE_CURMOVE';
 const UPDATE_LASTMOVE = 'UPDATE_LASTMOVE';
 const ITERATE = 'ITERATE';
+const MODULATE_SPEED = 'MODULATE_SPEED';
 
 export const moveKnight = knight => ({
   type: MOVE_KNIGHT,
@@ -53,6 +54,11 @@ export const addMove = (move) => ({
 	move
 });
 
+export const changeSpeed = speed => ({
+		type: CHANGE_SPEED,
+		speed
+})
+
 export const updateCurmove = (move) => ({
 	type: UPDATE_CURMOVE,
 	move
@@ -65,6 +71,11 @@ export const updateLastmove = (move) => ({
 
 export const iterate = () => ({
 	type: ITERATE
+})
+
+export const modulateSpeed = speed => ({
+		type: modulateSpeed,
+		speed
 })
 
 const initialState = {
@@ -94,6 +105,10 @@ const initialState = {
 
 export default function(state = initialState, action) {
   switch (action.type) {
+		case CHANGE_SPEED:
+			return Object.assign({}, state, {
+				speed: action.speed
+			})
     case MOVE_KNIGHT:
       return Object.assign({}, state, {
         knight: [action.knight[1], action.knight[0]],

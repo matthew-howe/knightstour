@@ -61,7 +61,7 @@ class ActionQueue {
 	}
 		
 	changeSpeed(speed) {
-		this.clearQueue();
+		this.clearQueueInterval();
 		this.eraseTicker();
 		this.initInterval(speed);
 	}	
