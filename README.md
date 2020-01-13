@@ -17,10 +17,10 @@ npm run start
 
 ## Algorithms
 
-  **Warnsdorf's Rule**  [Source](https://github.com/matthew-howe/knights-tour/blob/master/src/algorithms/warnsdorf.js)
+  **Warnsdorf's Rule**  [Source](https://github.com/matthew-howe/knights-tour/blob/master/src/algorithms/warnsdorf.js)  
     Will move the knight so that it always proceeds to the square form which the knight will have the fewest onward moves. (Not including squares already visited.)
 
-  **Divide and Conquer** [Source](https://github.com/matthew-howe/knights-tour/blob/master/src/algorithms/divideandconquer.js)
+  **Divide and Conquer** [Source](https://github.com/matthew-howe/knights-tour/blob/master/src/algorithms/divideandconquer.js)  
     Divides the board into smaller pieces, constructing tours on each piece, and patching the pieces together.
 
   **Nueral Network Solution**  
