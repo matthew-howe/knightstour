@@ -51,7 +51,7 @@ npm run start
 
   Since every point is connected with other two points, and there are only 8 possible directions (from 0 to 7):
 
-  ![8 directions](./img/direction.svg)
+  ![8 directions](img/direction.jpeg)
 
   The 6 pre-defined tours are stored in 2-dimensional arrays.
 
