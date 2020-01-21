@@ -1,0 +1,13 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\public",
+    "\\src",
+    "\\src\\algorithms",
+    "\\src\\components",
+    "\\src\\store",
+    "\\src\\utils"
+  ],
+  "SelectedNode": "\\src\\algorithms\\backtracking.js",
+  "PreviewInSolutionExplorer": false
+}

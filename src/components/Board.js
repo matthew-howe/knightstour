@@ -111,11 +111,6 @@ class Board extends Component {
     return (
       <div id="main">
         <div id="img">
-          <img
-            className="img"
-            alt="knight"
-            src="https://i.imgur.com/rDN4qFr.jpg"
-          />
         </div>
         <div className="middle">
           <div id="title">
