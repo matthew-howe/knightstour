@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {moveKnight, updateBoard, addMove, updateCurmove, updateLastmove, runScript, changeSpeed} from '../store/board';
+import {iterate, moveKnight, updateBoard, addMove, updateCurmove, updateLastmove, runScript, changeSpeed} from '../store/board';
 import backtrack from '../algorithms/backtracking';
 import warnsdorf from '../algorithms/warnsdorf';
 import divideandconquer from '../algorithms/divideandconquer';
@@ -59,12 +59,15 @@ class Board extends Component {
 		this.props.moveKnight([0,0]);
 
 
+    console.log(this.props.iterate)
+    console.log(this.props.addMove)
+
 		if (algo === 'warnsdorf') {
 			warnsdorf(this.props.board, this.props.moves, this.props.updateBoard,
-			 this.props.moveKnight, this.props.addMove);
+			 this.props.moveKnight, this.props.addMove, this.props.iterate);
 		} else {
 			divideandconquer(this.props.board, this.props.curMove, this.props.lastMove,
-										this.props.updateBoard, this.props.moveKnight, this.props.updateCurmove, this.props.updateLastmove)
+										this.props.updateBoard, this.props.moveKnight, this.props.updateCurmove, this.props.updateLastmove, this.props.iterate)
 		}
 		actionQueue.startQueueing(this.props.speed);
 
@@ -116,13 +119,12 @@ class Board extends Component {
           <div id="title">
             <h1>Knight's Tour</h1>
             <p>
-              By <a href="http://matthewhowe.net">Matthew Howe</a>
+              By <a href="http://matthw.com">Matthew Howe</a>
             </p>
           </div>
           <div id="board">{squares}</div>
         </div>
         <div id="buttons">
-
           <button onClick={() => this.run('warnsdorf')} id="b3">
             Warnsdorf's Rule
           </button>
@@ -149,7 +151,7 @@ class Board extends Component {
               className="slider"
             />
           </div>
-          <p className="iterations">Iterations: {this.state.iter}</p>
+          <p className="iterations">Iterations: {this.props.iterations}</p>
         </div>
       </div>
     );
@@ -173,7 +175,8 @@ const mapDispatch = dispatch => ({
   addMove: move => dispatch(addMove(move)),
   updateCurmove: move => dispatch(updateCurmove(move)),
   updateLastmove: move => dispatch(updateLastmove(move)),
-  changeSpeed: speed => dispatch(changeSpeed(speed))
+  changeSpeed: speed => dispatch(changeSpeed(speed)),
+  iterate: () => dispatch(iterate()),
 });
 
 export default connect(mapState, mapDispatch)(Board);

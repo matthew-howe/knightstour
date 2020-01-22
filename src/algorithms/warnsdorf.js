@@ -1,14 +1,11 @@
 import util from '../utils/utils'
 import actionQueue from '../queue/action-queue'
 
-
-const ub = (b) => console.log('new board ', b);
-const mk = (m) => console.log('knight moves ', m);
 // @param {array[][]} board - 2d array of the board
 // @param {array[][] moves - 2d array of the moves so far
 // @param {object{}} updateBoard - function to update board state
 // @param {object{}} moveKnight - function to update knight state
-const warnsdorf = async (board, moves, updateBoard, moveKnight, addMove) => {
+const warnsdorf = async (board, moves, updateBoard, moveKnight, addMove, iterate) => {
         let curBoard = board; 
         
         if (actionQueue.length > 143) {
@@ -51,7 +48,8 @@ const warnsdorf = async (board, moves, updateBoard, moveKnight, addMove) => {
 						actionQueue.enqueue(() => {
 							addMove(bestMove);
 							moveKnight(bestMove);
-							updateBoard(curBoard);
+                            updateBoard(curBoard);
+                            iterate()
 					});
 
 					
@@ -60,7 +58,7 @@ const warnsdorf = async (board, moves, updateBoard, moveKnight, addMove) => {
 			
 					
 					if (
-						warnsdorf(curBoard, moves, updateBoard, moveKnight, addMove)
+						warnsdorf(curBoard, moves, updateBoard, moveKnight, addMove, iterate)
 					) {
 						return true;
 					}

@@ -194,7 +194,8 @@ const divideandconquer =  async (
 			updateBoard, 
 			moveKnight,
 			updateCurmove,
-			updateLastmove
+      updateLastmove,
+      iterate
 		) => {
 		if (actionQueue.length > 143) {
 			console.log('board conquered');
@@ -210,18 +211,21 @@ const divideandconquer =  async (
     const nextmove = getNextPoint(curmove[0], curmove[1], lastmove[0], lastmove[1])
 								if (curBoard[lastmove[0]][lastmove[1]] === 0) {
 								curBoard[lastmove[0]][lastmove[1]] = 1;
-						}
+            }
+
 		actionQueue.enqueue(() => {
+      iterate()
 			moveKnight(nextmove)
-			updateBoard(curBoard)
-		})
+      updateBoard(curBoard)
+    })
+
 
 		curBoard[nextmove[0]][nextmove[1]] = 1
 
 		if (divideandconquer(
 			curBoard,
 			nextmove, curmove, updateBoard, moveKnight,
-			updateCurmove, updateLastmove
+			updateCurmove, updateLastmove, iterate
 		)) return true;
 		else return false
 		
