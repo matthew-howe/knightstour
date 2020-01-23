@@ -7,6 +7,7 @@ precache-manifest.7ae6c0d11bf8bb57e3ea6b8f96b7f54c.js
 /static
 asset-manifest.json
 manifest.json
+/.vs
 
 # dependencies
 /node_modules
