@@ -149,7 +149,6 @@ export default function(state = initialState, action) {
 			});
 
     default:
-      console.log('Switch function error in board store');
       return initialState;
   }
 }
