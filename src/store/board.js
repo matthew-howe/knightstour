@@ -1,8 +1,3 @@
-import backtrack from '../algorithms/backtracking';
-import warnsdorf from '../algorithms/warnsdorf';
-import divideandconquer from '../algorithms/divideandconquer';
-import actionQueue from '../queue/action-queue';
-
 const MOVE_KNIGHT = 'MOVE_KNIGHT';
 const UPDATE_BOARD = 'UPDATE_BOARD';
 const FAILURE = 'FAILURE';
@@ -15,7 +10,6 @@ const ADD_MOVE = 'ADD_MOVE';
 const UPDATE_CURMOVE = 'UPDATE_CURMOVE';
 const UPDATE_LASTMOVE = 'UPDATE_LASTMOVE';
 const ITERATE = 'ITERATE';
-const MODULATE_SPEED = 'MODULATE_SPEED';
 
 export const moveKnight = knight => ({
   type: MOVE_KNIGHT,
