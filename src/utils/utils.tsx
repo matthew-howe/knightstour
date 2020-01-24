@@ -1,6 +1,6 @@
 class utils {
 
-    findMoves(pos) {
+    findMoves(pos: any) {
         // findmoves takes the [x, y] coordinates
         // of the knight and returns an array of valid
         // positions for the knight to move
@@ -22,25 +22,25 @@ class utils {
     }
 
     
-    validMove(board, pos) {
+    validMove(board: any, pos: any) {
         // validmove checks if the target square 
         // hasn't been visited yet
         return board[pos[0]][pos[1]] !== 1;
     }
 
         
-    boardVisited(moves) {
+    boardVisited(moves: any) {
         // checks if every square has been visited
         return moves.length === 143;
     }
 
-    boardVisitedWarnsdorf(moves) {
+    boardVisitedWarnsdorf(moves: any) {
         // adjusted for warnsdorf's moves length
         return moves.length === 143;
     }
 
 
-    shuffle(array) {
+    shuffle(array: any) {
         // shuffling utility
         var currentIndex = array.length,
             temporaryValue,
@@ -61,7 +61,7 @@ class utils {
         return array;
     }
 
-    numOfEmpty( board, pos ) {
+    numOfEmpty( board: any, pos: any ) {
         let count = 0;
         let moves = this.findMoves(pos); 
 
@@ -72,7 +72,7 @@ class utils {
         return count;
     }
 
-    mapNumToCoords(num) {
+    mapNumToCoords(num: any) {
         let y = Math.floor(num / 12);
         let x = num % 12;
         return [x, y]
