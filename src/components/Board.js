@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {iterate, moveKnight, updateBoard, addMove, updateCurmove, updateLastmove, runScript, changeSpeed} from '../store/board';
-import backtrack from '../algorithms/backtracking';
 import warnsdorf from '../algorithms/warnsdorf';
 import divideandconquer from '../algorithms/divideandconquer';
 import actionQueue from '../queue/action-queue';
@@ -16,7 +15,6 @@ class Board extends Component {
       lastMove: [0,1]
     };
 
-    this.backtrack = backtrack.bind(this);
     this.warnsdorf = warnsdorf.bind(this);
     this.divideandconquer = divideandconquer.bind(this);
   }

@@ -6,19 +6,14 @@ import actionQueue from "../queue/action-queue";
 // @param {object{}} updateBoard - function to update board state
 // @param {object{}} moveKnight - function to update knight state
 const warnsdorf = async (
-  board,
-  moves,
-  updateBoard,
-  moveKnight,
-  addMove,
-  iterate
+  board: any,
+  moves: any,
+  updateBoard: any,
+  moveKnight: any,
+  addMove: any,
+  iterate: any
 ) => {
   let curBoard = board;
-
-  if (actionQueue.length > 143) {
-    console.log("board toured");
-    return true;
-  }
   if (util.boardVisitedWarnsdorf(moves)) {
     console.log("board toured");
     return true;
@@ -31,7 +26,7 @@ const warnsdorf = async (
   console.log("lastMove: ", lastMove);
   let possibleMoves = util.findMoves(lastMove);
   // find the move with the most empty spaces
-  let bestMove;
+  let bestMove: number[] = [0, 0];
   let bestCount = Infinity;
   for (const move of possibleMoves) {
     const count = util.numOfEmpty(curBoard, move);
@@ -40,9 +35,6 @@ const warnsdorf = async (
       bestMove = move;
     }
   }
-
-  // TODO: remove debug blocker
-  if (!bestMove) return;
 
   // move the knight and update the board
   if (bestMove[0] !== undefined && bestMove[1] !== undefined) {

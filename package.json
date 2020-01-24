@@ -4,6 +4,10 @@
   "private": true,
   "homepage": "https://matthew-howe.github.io/knights-tour",
   "dependencies": {
+    "@types/jest": "^24.9.1",
+    "@types/react": "^16.9.19",
+    "@types/react-dom": "^16.9.5",
+    "@types/react-redux": "^7.1.7",
     "d3": "^5.9.2",
     "gh-pages": "^2.0.1",
     "rc-slider": "^8.6.13",
@@ -40,5 +44,8 @@
     ]
   },
   "devDependencies": {
+    "source-map-loader": "^0.2.4",
+    "ts-loader": "^6.2.1",
+    "typescript": "^3.7.5"
   }
 }

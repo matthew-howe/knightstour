@@ -1,7 +1,7 @@
-let queue = []
-let interval = null
-let lastTick = null
-let tickInterval = null
+let queue: any = []
+let interval: any = null
+let lastTick: any = null
+let tickInterval: any = null
 
 class ActionQueue {
 
@@ -9,7 +9,7 @@ class ActionQueue {
 		return queue;
 	}
 
-	enqueue(fn) {
+	enqueue(fn: any) {
 		queue.push(fn);
 	}
 	
@@ -18,7 +18,7 @@ class ActionQueue {
 		if (fn) setImmediate(fn);
 	}
 
-	initInterval(speed) {
+	initInterval(speed: any) {
 		interval = setInterval(this.processQueue, speed);
 		this.eraseTicker();
 	}
@@ -29,7 +29,7 @@ class ActionQueue {
 		tickInterval = null;
 	}
 	
-	startQueueing(speed) {
+	startQueueing(speed: any) {
 		this.initInterval(speed);
 		this.processQueue();
 	}
@@ -44,23 +44,23 @@ class ActionQueue {
 		queue = [];
 	}
 
-	modulateSpeed(speed) {
+	modulateSpeed(speed: any) {
 		lastTick = lastTick || Date.now();
 		clearInterval(tickInterval);
 		this.initTickInterval(speed);
 	}
 
-	initTickInterval(speed) {
+	initTickInterval(speed: any) {
 		tickInterval = setInterval(this.tick.bind(null, speed), 1);
 	}
 
-	tick(speed) {
+	tick(speed: any) {
 		const elapsedTime = Date.now() - lastTick;
 		lastTick = Date.now();
 		this.processQueue();
 	}
 		
-	changeSpeed(speed) {
+	changeSpeed(speed: any) {
 		this.clearQueueInterval();
 		this.eraseTicker();
 		this.initInterval(speed);

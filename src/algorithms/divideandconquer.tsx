@@ -5,7 +5,7 @@ import actionQueue from '../queue/action-queue'
 // @param {integer} y - y position of knight
 // @param {integer} lastX - last x position of knight
 // @param {integer} lastY - last y position of knight
-function getNextPoint(x, y, lastX, lastY) {
+function getNextPoint(x: number, y: number, lastX: number, lastY: number) {
   
   const offsetTypeOriginArr = [3, 7, 6, 2, 7, 3, 2, 6]
   const offsetTypeSubstituteArr = [4, 3, 7, 4, 0, 7, 3, 0]
@@ -16,7 +16,7 @@ function getNextPoint(x, y, lastX, lastY) {
   // returns [gridSizeX, gridSizeY, gridLocX, gridLocY, pointAttribute]
   // @param {integer} x - x position of the knight
   // @param {integer} y - y position of the knight
-  function getPointGridAttribute(x, y) {
+  function getPointGridAttribute(x: number, y: number) {
 
     let gridSizeX = 12;
     let gridSizeY = 12;
@@ -77,7 +77,7 @@ function getNextPoint(x, y, lastX, lastY) {
 
 
 
-  function getPossibleNextPointOffsetType(x, y) {
+  function getPossibleNextPointOffsetType(x: number, y: number) {
     const Grid6_6 =
     [
       [[4, 5], [5, 6], [4, 7], [4, 7], [5, 7], [6, 7]],
@@ -105,8 +105,8 @@ function getNextPoint(x, y, lastX, lastY) {
     }
 
     const p = Grid6_6[gridLocY][gridLocX]
-    let next_a_offsetType = p[0]
-    let next_b_offsetType = p[1]
+    let next_a_offsetType: any = p[0]
+    let next_b_offsetType: any = p[1]
 
     if (shouldReverse) {
       next_a_offsetType = (9 - next_a_offsetType) % 8
@@ -130,7 +130,7 @@ function getNextPoint(x, y, lastX, lastY) {
       pointAttribute, p, next_a_offsetType, next_b_offsetType]
   }
 
-  function getPossibleNextPoint(x, y) {
+  function getPossibleNextPoint(x: number, y: number) {
 
     let [gridSizeX, gridSizeY, gridLocX, gridLocY,
       pointAttribute, p, next_a_offsetType, next_b_offsetType] = 
@@ -149,7 +149,7 @@ function getNextPoint(x, y, lastX, lastY) {
   }
   //
 
-  let nextX, nextY
+  let nextX: any, nextY: any;
   
   let [p_b, next_a_x_p, next_a_y_p, next_b_x_p, next_b_y_p] = 
     getPossibleNextPoint(x, y)
@@ -167,11 +167,10 @@ function getNextPoint(x, y, lastX, lastY) {
   return [nextX, nextY]
 }
 
-const pointSerialize = (x, y) => x * 12 + y
-
+const pointSerialize = (x: any, y: any) => x * 12 + y
 
 // TODO: maybe unnecessary 
-function getNextPointSerialize(x, y, lastX, lastY) {
+function getNextPointSerialize(x: number, y: number, lastX: number, lastY: number) {
 
   console.log('\n', 'starting x: ', x,'\n',
     'starting y: ', y,'\n',
@@ -179,28 +178,20 @@ function getNextPointSerialize(x, y, lastX, lastY) {
     'last y: ', lastY,'\n')
 
   let [nextX, nextY] = getNextPoint(x, y, lastX, lastY)
-  console.log('\n','serialized: ',pointSerialize(nextX, nextY,'\n'))
   return pointSerialize(nextX, nextY)
 }
 
 
-// TODO: Remove dummy loggers
-const ub = (b) => console.log('new board ', b);
-const mk = (m) => console.log('knight moves ', m);
 const divideandconquer =  async (
-			board, 
-			curmove, 
-			lastmove, 
-			updateBoard, 
-			moveKnight,
-			updateCurmove,
-      updateLastmove,
-      iterate
+			board: any, 
+			curmove: Array<number>, 
+			lastmove: Array<number>, 
+			updateBoard: any, 
+			moveKnight: any,
+			updateCurmove: any,
+      updateLastmove: any,
+      iterate: any
 		) => {
-		if (actionQueue.length > 143) {
-			console.log('board conquered');
-			return;
-		}
     if (curmove[0] === 1 && curmove[1] === 0) {
 				console.log('board conquered');
 				return;
