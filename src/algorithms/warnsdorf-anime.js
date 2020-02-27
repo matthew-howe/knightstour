@@ -2,6 +2,8 @@ import actionQueue from "../queue/action-queue";
 
 const warnsdorfAnime = (updateBoard, moveKnight) => {
 
+  actionQueue.clear();
+
     const board = [
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
