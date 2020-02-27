@@ -13,7 +13,14 @@ const warnsdorf = async (
   addMove: any,
   iterate: any
 ) => {
-  let curBoard = board;
+  console.log('the board', board)
+  let curBoard:number[][] = [];
+
+  for (let i = 0; i < 12; i++) {
+    curBoard[i] = board[i].slice();
+}
+
+
   if (util.boardVisitedWarnsdorf(moves)) {
     console.log("board toured");
     return true;
@@ -23,7 +30,7 @@ const warnsdorf = async (
     curBoard[lastMove[0]][lastMove[1]] = 1;
   }
 
-  console.log("lastMove: ", lastMove);
+  
   let possibleMoves = util.findMoves(lastMove);
   // find the move with the most empty spaces
   let bestMove: number[] = [0, 0];
@@ -35,6 +42,7 @@ const warnsdorf = async (
       bestMove = move;
     }
   }
+ 
 
   // move the knight and update the board
   if (bestMove[0] !== undefined && bestMove[1] !== undefined) {

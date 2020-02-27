@@ -196,7 +196,11 @@ const divideandconquer =  async (
 				console.log('board conquered');
 				return;
 		}
-    let curBoard = board;
+    let curBoard:number[][] = []
+
+  for (let i = 0; i < 12; i++) {
+    curBoard[i] = board[i].slice();
+}
     curBoard[curmove[0]][curmove[1]] = 1
 
     const nextmove = getNextPoint(curmove[0], curmove[1], lastmove[0], lastmove[1])

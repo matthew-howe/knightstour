@@ -74,7 +74,6 @@ export const modulateSpeed = speed => ({
 
 const initialState = {
   knight: [0, 0],
-  lastMove: [0, 0],
   moves: [[0,0]],
   curMove: [0, 2],
   lastMove: [1, 0],

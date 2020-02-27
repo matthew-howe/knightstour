@@ -4,6 +4,8 @@ import {iterate, moveKnight, updateBoard, addMove, updateCurmove, updateLastmove
 import warnsdorf from '../algorithms/warnsdorf';
 import divideandconquer from '../algorithms/divideandconquer';
 import actionQueue from '../queue/action-queue';
+import Square from './Square'
+import warnsdorfAnime from '../algorithms/warnsdorf-anime'
 
 class Board extends Component {
   constructor() {
@@ -46,25 +48,13 @@ class Board extends Component {
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   ]
-		let moves = [[0,0]]	
-		let curMove = [0,2]
-		let lastMove = [1,0]
-
-		
-		this.props.updateCurmove(curMove);
-		this.props.updateLastmove(lastMove);
-		this.props.updateBoard(board);
-		this.props.moveKnight([0,0]);
-
-
-    console.log(this.props.iterate)
-    console.log(this.props.addMove)
+	
 
 		if (algo === 'warnsdorf') {
-			warnsdorf(this.props.board, this.props.moves, this.props.updateBoard,
+			warnsdorf(board, this.props.moves, this.props.updateBoard,
 			 this.props.moveKnight, this.props.addMove, this.props.iterate);
 		} else {
-			divideandconquer(this.props.board, this.props.curMove, this.props.lastMove,
+			divideandconquer(board, this.props.curMove, this.props.lastMove,
 										this.props.updateBoard, this.props.moveKnight, this.props.updateCurmove, this.props.updateLastmove, this.props.iterate)
 		}
 		actionQueue.startQueueing(this.props.speed);
@@ -86,20 +76,20 @@ class Board extends Component {
 
     return knight ? (
       black ? (
-        <div key={i} className="black square knight" />
+        <Square serial={i} styling="black square knight" />
       ) : (
-        <div key={i} className="white square knight" />
+        <Square serial={i} styling="white square knight" />
       )
     ) : black ? (
       visited ? (
-        <div key={i} className="black square " />
+        <Square serial={i} styling="black square visited" />
       ) : (
-        <div key={i} className="black square" />
+        <Square serial={i} styling="black square" />
       )
     ) : visited ? (
-      <div key={i} className="white square " />
+      <Square serial={i} styling="white square visited" />
     ) : (
-      <div key={i} className="white square" />
+      <Square serial={i} styling="white square" />
     );
   }
 
@@ -131,7 +121,7 @@ class Board extends Component {
             id="b3">
             Divide and Conquer
           </button>
-          <button onClick={() => this.run()} id="b3">
+          <button onClick={() => warnsdorfAnime(this.props.updateBoard, this.props.moveKnight)} id="b3">
             Neural Network Solution
           </button>
           <div />
