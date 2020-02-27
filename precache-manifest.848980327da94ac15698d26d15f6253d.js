@@ -1,19 +1,19 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "d59a1efa88fa5dcd5b42a2645a1e4d02",
+    "revision": "cc3339e672a0f9047070cc2355c0af52",
     "url": "/knights-tour/index.html"
   },
   {
-    "revision": "22f912bd9809f909fd1a",
-    "url": "/knights-tour/static/css/main.272d733a.chunk.css"
+    "revision": "b99c587d29b6dd4f8574",
+    "url": "/knights-tour/static/css/main.529a4bd4.chunk.css"
   },
   {
     "revision": "e976ed72f2fdc3aa9b82",
     "url": "/knights-tour/static/js/2.5095a9a4.chunk.js"
   },
   {
-    "revision": "22f912bd9809f909fd1a",
-    "url": "/knights-tour/static/js/main.483c7c4e.chunk.js"
+    "revision": "b99c587d29b6dd4f8574",
+    "url": "/knights-tour/static/js/main.ab5ff730.chunk.js"
   },
   {
     "revision": "4c351a30f3aff7568b3a",
