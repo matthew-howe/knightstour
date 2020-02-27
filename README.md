@@ -4,7 +4,7 @@ A visual exploration of local search algorithms which generate solutions to the 
 
 ### VIEW LIVE: https://matthew-howe.github.io/knights-tour/
 
-![screenshot](https://github.com/matthew-howe/knights-tour/blob/master/img/kt.gifg)
+![screenshot](https://github.com/matthew-howe/knights-tour/blob/master/img/kt.gif)
 
 ## Steps for running
 
