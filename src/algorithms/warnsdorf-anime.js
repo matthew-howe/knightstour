@@ -20,7 +20,7 @@ const warnsdorfAnime = (updateBoard, moveKnight) => {
 
       actionQueue.startQueueing(80)
 
-      for (let i = 1; i < 25; i++) {
+      for (let i = 1; i < 1000; i++) {
 
 
         
@@ -44,8 +44,9 @@ const warnsdorfAnime = (updateBoard, moveKnight) => {
             updateBoard(newBoard)
             moveKnight(newKnight)
         })
+        
       }
-
+    
       
 }
 
