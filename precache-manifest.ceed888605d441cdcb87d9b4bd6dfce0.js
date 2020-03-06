@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "57028f7868be498e069f960fd4a4b30a",
+    "revision": "cd3fe400b907454a93fcb413a2dc8320",
     "url": "/knights-tour/index.html"
   },
   {
-    "revision": "da12a9ca8ba98d8a29ab",
+    "revision": "fa93904b654f4c543ac5",
     "url": "/knights-tour/static/css/main.e3b57fea.chunk.css"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/knights-tour/static/js/2.5095a9a4.chunk.js"
   },
   {
-    "revision": "da12a9ca8ba98d8a29ab",
-    "url": "/knights-tour/static/js/main.903af454.chunk.js"
+    "revision": "fa93904b654f4c543ac5",
+    "url": "/knights-tour/static/js/main.5766725f.chunk.js"
   },
   {
     "revision": "4c351a30f3aff7568b3a",
