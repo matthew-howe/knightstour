@@ -1,5 +1,5 @@
-import util from "../utils/utils";
-import actionQueue from "../queue/action-queue";
+import util from '../utils/utils';
+import actionQueue from '../queue/action-queue';
 
 // @param {array[][]} board - 2d array of the board
 // @param {array[][] moves - 2d array of the moves so far
@@ -11,26 +11,26 @@ const warnsdorf = async (
   updateBoard: any,
   moveKnight: any,
   addMove: any,
-  iterate: any
+  iterate: any,
+  updateCurmove: any,
+  updateLastmove: any,
 ) => {
-  console.log('the board', board)
-  let curBoard:number[][] = [];
-
+  let curBoard: number[][] = [];
+  let curMoves: number[][] = [];
   for (let i = 0; i < 12; i++) {
     curBoard[i] = board[i].slice();
-}
+  }
+  for (const move of moves) curMoves.push(move.slice());
 
-
-  if (util.boardVisitedWarnsdorf(moves)) {
-    console.log("board toured");
+  if (curMoves.length === 144) {
     return true;
   }
-  const lastMove = moves[moves.length - 1];
+
+  const lastMove = curMoves[curMoves.length - 1];
   if (curBoard[lastMove[0]][lastMove[1]] === 0) {
     curBoard[lastMove[0]][lastMove[1]] = 1;
   }
 
-  
   let possibleMoves = util.findMoves(lastMove);
   // find the move with the most empty spaces
   let bestMove: number[] = [0, 0];
@@ -42,7 +42,6 @@ const warnsdorf = async (
       bestMove = move;
     }
   }
- 
 
   // move the knight and update the board
   if (bestMove[0] !== undefined && bestMove[1] !== undefined) {
@@ -55,16 +54,29 @@ const warnsdorf = async (
       moveKnight(bestMove);
       updateBoard(curBoard);
       iterate();
+      updateCurmove(bestMove)
+      updateLastmove(lastMove)
     });
 
     curBoard[row][column] = 1;
-    moves.push(bestMove);
+    curMoves.push(bestMove);
 
-    if (warnsdorf(curBoard, moves, updateBoard, moveKnight, addMove, iterate)) {
+    if (
+      warnsdorf(
+        curBoard,
+        curMoves,
+        updateBoard,
+        moveKnight,
+        addMove,
+        iterate,
+        updateCurmove,
+        updateLastmove,
+      )
+    ) {
       return true;
     } else return false;
   } else {
-    alert("failed to converge on correct solution!");
+    alert('failed to converge on correct solution!');
     return false;
   }
 };

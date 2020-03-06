@@ -1,11 +1,24 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {iterate, moveKnight, updateBoard, addMove, updateCurmove, updateLastmove, runScript, changeSpeed} from '../store/board';
+import {
+  iterate,
+  moveKnight,
+  updateBoard,
+  addMove,
+  updateCurmove,
+  updateLastmove,
+  runScript,
+  changeSpeed,
+  resetIterations,
+  resetMoves,
+  reset
+} from '../store/board';
 import warnsdorf from '../algorithms/warnsdorf';
 import divideandconquer from '../algorithms/divideandconquer';
 import actionQueue from '../queue/action-queue';
-import Square from './Square'
-import warnsdorfAnime from '../algorithms/warnsdorf-anime'
+import Square from './Square';
+import warnsdorfAnime from '../algorithms/warnsdorf-anime';
+
 
 class Board extends Component {
   constructor() {
@@ -13,8 +26,8 @@ class Board extends Component {
     this.state = {
       speed: 80,
       start: [[0, 0]],
-      curMove: [2,0],
-      lastMove: [0,1]
+      curMove: [2, 0],
+      lastMove: [0, 1],
     };
 
     this.warnsdorf = warnsdorf.bind(this);
@@ -22,44 +35,62 @@ class Board extends Component {
   }
 
   handleChange(e) {
-			
-			actionQueue.clearQueueInterval();
-			actionQueue.modulateSpeed(e.target.value);
-			
-			this.props.changeSpeed(e.target.value);
-			this.setState({speed: e.target.value});
+    actionQueue.clearQueueInterval();
+    actionQueue.modulateSpeed(e.target.value);
 
-			actionQueue.changeSpeed(e.target.value);
+    this.props.changeSpeed(e.target.value);
+    this.setState({speed: e.target.value});
+
+    actionQueue.changeSpeed(e.target.value);
   }
 
-	run(algo) {
-			actionQueue.clear();
-			let board = [
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  ]
-	
+  run(algo) {
+    actionQueue.clear();
+    this.props.resetIterations();
+    this.props.resetMoves();
+    let board = [
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    ];
+    const firstMove = [this.props.moves[this.props.moves.length-1]]
 
-		if (algo === 'warnsdorf') {
-			warnsdorf(board, this.props.moves, this.props.updateBoard,
-			 this.props.moveKnight, this.props.addMove, this.props.iterate);
-		} else {
-			divideandconquer(board, this.props.curMove, this.props.lastMove,
-										this.props.updateBoard, this.props.moveKnight, this.props.updateCurmove, this.props.updateLastmove, this.props.iterate)
-		}
-		actionQueue.startQueueing(this.props.speed);
-
-	}
+    if (algo === 'warnsdorf') {
+      warnsdorf(
+        board,
+        firstMove,
+        this.props.updateBoard,
+        this.props.moveKnight,
+        this.props.addMove,
+        this.props.iterate,
+        this.props.updateCurmove,
+        this.props.updateLastmove
+      );
+    } else {
+      divideandconquer(
+        board,
+        this.props.curMove,
+        this.props.lastMove,
+        this.props.updateBoard,
+        this.props.moveKnight,
+        this.props.updateCurmove,
+        this.props.updateLastmove,
+        this.props.iterate,
+        this.props.addMove,
+        this.props.reset
+      );
+    }
+    actionQueue.startQueueing(this.props.speed);
+  }
 
   renderSquare(i) {
     let x = i % 12;
@@ -101,8 +132,7 @@ class Board extends Component {
     }
     return (
       <div id="main">
-        <div id="img">
-        </div>
+        <div id="img"></div>
         <div className="middle">
           <div id="title">
             <h1>Knight's Tour</h1>
@@ -116,12 +146,14 @@ class Board extends Component {
           <button onClick={() => this.run('warnsdorf')} id="b3">
             Warnsdorf's Rule
           </button>
-          <button
-            onClick={() => this.run()}
-            id="b3">
+          <button onClick={() => this.run()} id="b3">
             Divide and Conquer
           </button>
-          <button onClick={() => warnsdorfAnime(this.props.updateBoard, this.props.moveKnight)} id="b3">
+          <button
+            onClick={() =>
+              warnsdorfAnime(this.props.updateBoard, this.props.moveKnight)
+            }
+            id="b3">
             Neural Network Solution
           </button>
           <div />
@@ -147,13 +179,13 @@ class Board extends Component {
 }
 
 const mapState = state => ({
-	lastMove: state.board.lastMove,
-	moves: state.board.moves,
-	curMove: state.board.curMove,
+  lastMove: state.board.lastMove,
+  moves: state.board.moves,
+  curMove: state.board.curMove,
   board: state.board.board,
   knight: state.board.knight,
   iterations: state.board.iterations,
-	speed: state.board.speed
+  speed: state.board.speed,
 });
 
 const mapDispatch = dispatch => ({
@@ -165,6 +197,9 @@ const mapDispatch = dispatch => ({
   updateLastmove: move => dispatch(updateLastmove(move)),
   changeSpeed: speed => dispatch(changeSpeed(speed)),
   iterate: () => dispatch(iterate()),
+  resetIterations: () => dispatch(resetIterations()),
+  resetMoves: () => dispatch(resetMoves()),
+  reset: () => dispatch(reset())
 });
 
 export default connect(mapState, mapDispatch)(Board);

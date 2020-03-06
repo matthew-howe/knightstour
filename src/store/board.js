@@ -10,6 +10,9 @@ const ADD_MOVE = 'ADD_MOVE';
 const UPDATE_CURMOVE = 'UPDATE_CURMOVE';
 const UPDATE_LASTMOVE = 'UPDATE_LASTMOVE';
 const ITERATE = 'ITERATE';
+const RESET_MOVES = 'RESET_MOVES';
+const RESET_ITERATIONS = 'RESET_ITERATIONS';
+const RESET = 'RESET'
 
 export const moveKnight = knight => ({
   type: MOVE_KNIGHT,
@@ -70,6 +73,18 @@ export const iterate = () => ({
 export const modulateSpeed = speed => ({
 		type: modulateSpeed,
 		speed
+})
+
+export const resetMoves = () => ({
+  type: RESET_MOVES,
+});
+
+export const resetIterations = () => ({
+  type: RESET_ITERATIONS,
+});
+
+export const reset = () => ({
+  type: RESET,
 })
 
 const initialState = {
@@ -140,7 +155,16 @@ export default function(state = initialState, action) {
 			return Object.assign({}, state, {
 				lastMove: action.move
 			});
-
+    case RESET_MOVES:
+			return Object.assign({}, state, {
+				moves: [state.moves[state.moves.length - 1].slice()]
+			});
+    case RESET_ITERATIONS:
+			return Object.assign({}, state, {
+				iterations: 0
+			});
+    case RESET:
+      return initialState;
     default:
       return initialState;
   }
