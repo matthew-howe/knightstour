@@ -12,7 +12,7 @@ const UPDATE_LASTMOVE = 'UPDATE_LASTMOVE';
 const ITERATE = 'ITERATE';
 const RESET_MOVES = 'RESET_MOVES';
 const RESET_ITERATIONS = 'RESET_ITERATIONS';
-const RESET = 'RESET'
+const RESET = 'RESET';
 
 export const moveKnight = knight => ({
   type: MOVE_KNIGHT,
@@ -33,47 +33,47 @@ export const stopScript = () => ({
 });
 
 export const runScript = () => ({
-	type: RUN_SCRIPT
+  type: RUN_SCRIPT,
 });
 
-export const changeScript = (script) => ({
-	type: CHANGE_SCRIPT,
-	script
+export const changeScript = script => ({
+  type: CHANGE_SCRIPT,
+  script,
 });
 
-export const changeSize = (size) => ({
-	type: CHANGE_SIZE,
-	size
+export const changeSize = size => ({
+  type: CHANGE_SIZE,
+  size,
 });
 
-export const addMove = (move) => ({
-	type: ADD_MOVE,
-	move
+export const addMove = move => ({
+  type: ADD_MOVE,
+  move,
 });
 
 export const changeSpeed = speed => ({
-		type: CHANGE_SPEED,
-		speed
-})
+  type: CHANGE_SPEED,
+  speed,
+});
 
-export const updateCurmove = (move) => ({
-	type: UPDATE_CURMOVE,
-	move
-})
+export const updateCurmove = move => ({
+  type: UPDATE_CURMOVE,
+  move,
+});
 
-export const updateLastmove = (move) => ({
-	type: UPDATE_LASTMOVE,
-	move
-})
+export const updateLastmove = move => ({
+  type: UPDATE_LASTMOVE,
+  move,
+});
 
 export const iterate = () => ({
-	type: ITERATE
-})
+  type: ITERATE,
+});
 
 export const modulateSpeed = speed => ({
-		type: modulateSpeed,
-		speed
-})
+  type: modulateSpeed,
+  speed,
+});
 
 export const resetMoves = () => ({
   type: RESET_MOVES,
@@ -85,11 +85,11 @@ export const resetIterations = () => ({
 
 export const reset = () => ({
   type: RESET,
-})
+});
 
 const initialState = {
   knight: [0, 0],
-  moves: [[0,0]],
+  moves: [[0, 0]],
   curMove: [0, 2],
   lastMove: [1, 0],
   board: [
@@ -113,10 +113,10 @@ const initialState = {
 
 export default function(state = initialState, action) {
   switch (action.type) {
-		case CHANGE_SPEED:
-			return Object.assign({}, state, {
-				speed: action.speed
-			})
+    case CHANGE_SPEED:
+      return Object.assign({}, state, {
+        speed: action.speed,
+      });
     case MOVE_KNIGHT:
       return Object.assign({}, state, {
         knight: [action.knight[1], action.knight[0]],
@@ -130,41 +130,60 @@ export default function(state = initialState, action) {
       break;
 
     case RUN_SCRIPT:
-
       return state;
 
     case STOP_SCRIPT:
-
       return state;
 
-		case ITERATE:
-			return Object.assign({}, state, {
-				iterations: state.iterations + 1
-			});
-			
-		case ADD_MOVE:
-			return Object.assign({}, state, {
-				moves: [...state.moves, action.move]
-			});
-			
-		case UPDATE_CURMOVE:
-			return Object.assign({}, state, {
-				curMove: action.move
-			});
-		case UPDATE_LASTMOVE:
-			return Object.assign({}, state, {
-				lastMove: action.move
-			});
+    case ITERATE:
+      return Object.assign({}, state, {
+        iterations: state.iterations + 1,
+      });
+
+    case ADD_MOVE:
+      return Object.assign({}, state, {
+        moves: [...state.moves, action.move],
+      });
+
+    case UPDATE_CURMOVE:
+      return Object.assign({}, state, {
+        curMove: action.move,
+      });
+    case UPDATE_LASTMOVE:
+      return Object.assign({}, state, {
+        lastMove: action.move,
+      });
     case RESET_MOVES:
-			return Object.assign({}, state, {
-				moves: [state.moves[state.moves.length - 1].slice()]
-			});
+      return Object.assign({}, state, {
+        moves: [state.moves[state.moves.length - 1].slice()],
+      });
     case RESET_ITERATIONS:
-			return Object.assign({}, state, {
-				iterations: 0
-			});
+      return Object.assign({}, state, {
+        iterations: 0,
+      });
     case RESET:
-      return initialState;
+      return Object.assign({}, state, {
+        knight: [0, 0],
+        moves: [[0, 0]],
+        curMove: [0, 2],
+        lastMove: [1, 0],
+        board: [
+          [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        ],
+        iterations: 0,
+        timeout: {},
+      });
     default:
       return initialState;
   }
