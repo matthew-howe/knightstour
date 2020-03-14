@@ -265,6 +265,8 @@ function getNextPoint(x: number, y: number, lastX: number, lastY: number) {
     nextX = next_a_x_p;
     nextY = next_a_y_p;
   } else {
+    nextX = next_a_x_p;
+    nextY = next_a_y_p;
     console.log('Neither of the next pointers match the lastXY (getNextPoint');
   }
 
@@ -275,7 +277,6 @@ function getNextPoint(x: number, y: number, lastX: number, lastY: number) {
 
 const pointSerialize = (x: any, y: any) => x * 12 + y;
 
-// TODO: maybe unnecessary
 function getNextPointSerialize(
   x: number,
   y: number,
