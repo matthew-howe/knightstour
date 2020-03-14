@@ -37,10 +37,8 @@ class Board extends Component {
   handleChange(e) {
     actionQueue.clearQueueInterval();
     actionQueue.modulateSpeed(e.target.value);
-
     this.props.changeSpeed(e.target.value);
     this.setState({speed: e.target.value});
-
     actionQueue.changeSpeed(e.target.value);
   }
 
@@ -111,17 +109,42 @@ class Board extends Component {
       ) : (
         <Square serial={i} styling="white square knight" />
       )
-    ) : black ? (
-      visited ? (
+    ) : visited ? (
+      black ? (
         <Square serial={i} styling="black square visited" />
       ) : (
-        <Square serial={i} styling="black square" />
+        <Square serial={i} styling="white square visited" />
       )
-    ) : visited ? (
-      <Square serial={i} styling="white square visited" />
+    ) : black ? (
+      <Square serial={i} styling="black square" />
     ) : (
       <Square serial={i} styling="white square" />
     );
+  }
+
+  clearBoard() {
+    actionQueue.clear();
+    this.props.resetIterations();
+    this.props.resetMoves();
+
+    let board = [
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    ];
+    const firstMove = [this.props.moves[this.props.moves.length-1]]
+
+    this.props.updateBoard(board)
+    this.props.moveKnight(firstMove)
   }
 
   render() {
@@ -156,6 +179,10 @@ class Board extends Component {
             id="b3">
             Neural Network Solution
           </button>
+          <button
+            onClick={() => this.clearBoard()} id="b4">
+              Clear Board
+            </button>
           <div />
           <div>
             <p className="speed-text">Speed: {this.state.speed} ms</p>
