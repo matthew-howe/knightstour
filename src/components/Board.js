@@ -213,12 +213,8 @@ class Board extends Component {
             onClick={() => this.placeKnight()} id="b3">
             Place Knight
           </button>
-          <button
-            onClick={() => this.clearBoard()} id="b3">
-              Clear Board
-            </button>
           <div>
-            <p className="speed-text">Speed: {this.state.speed} ms</p>
+            <p className="speed-text">{this.state.speed} ms</p>
             <input
               name="speed"
               onChange={e => {

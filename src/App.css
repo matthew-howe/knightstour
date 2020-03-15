@@ -168,14 +168,13 @@ button:active {
   animation: placing 4s;
 }
 
+.placing:hover {
+  background-color: rgba(255, 0, 0, 0.2);
+}
+
 @keyframes placing {
   0% {
-    background-image:
-    radial-gradient(
-      circle closest-side,
-      yellow,
-      #f06d06
-    );
+    background: gold;
   }
 }
 
@@ -213,7 +212,7 @@ button:active {
 }
 
 .speed-text {
-  margin-left: 8%;
+  margin-left: 2em;
   font-family: 'Libre Baskerville';
 }
 
