@@ -164,6 +164,21 @@ button:active {
   background-color: #fffff0;
 }
 
+.placing {
+  animation: placing 4s;
+}
+
+@keyframes placing {
+  0% {
+    background-image:
+    radial-gradient(
+      circle closest-side,
+      yellow,
+      #f06d06
+    );
+  }
+}
+
 .visited {
   animation: visit 4s;
 }

@@ -26,7 +26,11 @@ const warnsdorf = async (
     return true;
   }
 
-  const lastMove = curMoves[curMoves.length - 1];
+  let lastMove = curMoves[curMoves.length - 1];
+
+  if (Array.isArray(lastMove[0])) lastMove = lastMove[0];
+
+  if (lastMove === undefined) lastMove = [0,0];
   if (curBoard[lastMove[0]][lastMove[1]] === 0) {
     curBoard[lastMove[0]][lastMove[1]] = 1;
   }

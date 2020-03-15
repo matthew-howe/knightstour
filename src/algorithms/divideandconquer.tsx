@@ -1,4 +1,5 @@
 import actionQueue from '../queue/action-queue';
+import utils from '../utils/utils';
 
 // returns the coordinates of the next move as an array [x, y]
 // @param {integer} x - x position of knight
@@ -283,21 +284,7 @@ function getNextPointSerialize(
   lastX: number,
   lastY: number,
 ) {
-  console.log(
-    '\n',
-    'starting x: ',
-    x,
-    '\n',
-    'starting y: ',
-    y,
-    '\n',
-    'last x: ',
-    lastX,
-    '\n',
-    'last y: ',
-    lastY,
-    '\n',
-  );
+
 
   let [nextX, nextY] = getNextPoint(x, y, lastX, lastY);
   return pointSerialize(nextX, nextY);
@@ -306,7 +293,7 @@ function getNextPointSerialize(
 const divideandconquer = async (
   board: any,
   curmove: Array<number>,
-  lastmove: Array<number>,
+  lastmove: any,
   updateBoard: any,
   moveKnight: any,
   updateCurmove: any,
@@ -325,6 +312,14 @@ const divideandconquer = async (
   for (let i = 0; i < 12; i++) {
     curBoard[i] = board[i].slice();
   }
+
+  if (Array.isArray(curmove[0])) curmove = curmove[0];
+
+  if (lastmove === undefined) {
+    lastmove = utils.findMoves(curmove)[0]
+  }
+
+
   curBoard[curmove[0]][curmove[1]] = 1;
 
   const nextmove = getNextPoint(

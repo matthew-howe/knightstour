@@ -18,6 +18,7 @@ import divideandconquer from '../algorithms/divideandconquer';
 import actionQueue from '../queue/action-queue';
 import Square from './Square';
 import warnsdorfAnime from '../algorithms/warnsdorf-anime';
+import util from '../utils/utils';
 
 
 class Board extends Component {
@@ -28,6 +29,7 @@ class Board extends Component {
       start: [[0, 0]],
       curMove: [2, 0],
       lastMove: [0, 1],
+      isKnightPlaced: true,
     };
 
     this.warnsdorf = warnsdorf.bind(this);
@@ -43,9 +45,7 @@ class Board extends Component {
   }
 
   run(algo) {
-    actionQueue.clear();
-    this.props.resetIterations();
-    this.props.resetMoves();
+
     let board = [
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -60,7 +60,17 @@ class Board extends Component {
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     ];
-    const firstMove = [this.props.moves[this.props.moves.length-1]]
+
+
+    if (this.props.knight === undefined) this.props.moveKnight([0, 0])
+    const firstMove = [[this.props.knight[1] || 0, this.props.knight[0] || 0]]
+    const firstCurMove = [this.props.knight[1], this.props.knight[0]]
+    const possibleLastMoves = util.findMoves(firstCurMove);
+    const firstLastMove = possibleLastMoves[0];
+    
+    actionQueue.clear();
+    this.props.resetIterations();
+    this.props.resetMoves();
 
     if (algo === 'warnsdorf') {
       warnsdorf(
@@ -74,10 +84,11 @@ class Board extends Component {
         this.props.updateLastmove
       );
     } else {
+      this.props.iterate();
       divideandconquer(
         board,
-        this.props.curMove,
-        this.props.lastMove,
+        firstCurMove,
+        firstLastMove,
         this.props.updateBoard,
         this.props.moveKnight,
         this.props.updateCurmove,
@@ -103,7 +114,13 @@ class Board extends Component {
       visited = this.props.board[y][x] === 1;
     }
 
-    return knight ? (
+    return !this.state.isKnightPlaced ? (
+      black ? (
+        <Square serial={i} styling="black square placing" placeKnight={this.handleKnightPlace.bind(this)} />
+      ) : (
+        <Square serial={i} styling="white square placing" placeKnight={this.handleKnightPlace.bind(this)} />
+      )
+    ) : knight ? (
       black ? (
         <Square serial={i} styling="black square knight" />
       ) : (
@@ -147,6 +164,19 @@ class Board extends Component {
     this.props.moveKnight(firstMove)
   }
 
+  placeKnight() {
+    this.clearBoard()
+    this.setState({ isKnightPlaced: false })
+  }
+
+  handleKnightPlace(i) {
+    let x = i % 12;
+    let y = Math.floor(i / 12);
+    this.props.moveKnight([y, x])
+    this.setState({ isKnightPlaced: true })    
+  }
+
+
   render() {
     let squares = [];
 
@@ -177,13 +207,16 @@ class Board extends Component {
               warnsdorfAnime(this.props.updateBoard, this.props.moveKnight)
             }
             id="b3">
-            Neural Network Solution
+            Neural Network
           </button>
           <button
-            onClick={() => this.clearBoard()} id="b4">
+            onClick={() => this.placeKnight()} id="b3">
+            Place Knight
+          </button>
+          <button
+            onClick={() => this.clearBoard()} id="b3">
               Clear Board
             </button>
-          <div />
           <div>
             <p className="speed-text">Speed: {this.state.speed} ms</p>
             <input
