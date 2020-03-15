@@ -31,6 +31,21 @@ p {
   -moz-transform-origin: 0 0;
 }
 
+.welcome {
+  position: absolute;
+  border-radius: 5px;
+  border: 1px dashed black;
+  top: 18em;
+  right: 12em;
+  z-index: 2;
+  height: 3em;
+  width: 200px;
+  text-align: center;
+  background: lightgray;
+  color: maroon;
+  
+}
+
 #main {
   display: flex;
   height: 600px;
@@ -111,6 +126,13 @@ p {
 
 .middle {
   width: 550px;
+  animation: fadein 3s;
+}
+
+@keyframes fadein {
+  0% {
+    opacity: 0;
+  }
 }
 
 button {
@@ -250,7 +272,7 @@ button:active {
 .iterations {
   margin-left: 12%;
   font-family: 'Libre Baskerville';
-  font-size: 20px;
+  font-size: 16px;
 }
 
 /* Links: replicate underline that clears descenders */

@@ -30,6 +30,7 @@ class Board extends Component {
       curMove: [2, 0],
       lastMove: [0, 1],
       isKnightPlaced: true,
+      toggle: false
     };
 
     this.warnsdorf = warnsdorf.bind(this);
@@ -165,6 +166,11 @@ class Board extends Component {
   }
 
   placeKnight() {
+    this.setState(prevstate => {
+      return {
+         toggle: !prevstate.toggle 
+        }
+      })
     this.clearBoard()
     this.setState({ isKnightPlaced: false })
   }
@@ -193,7 +199,9 @@ class Board extends Component {
               By <a href="http://matthw.com">Matthew Howe</a>
             </p>
           </div>
+          <div>
           <div id="board">{squares}</div>
+          </div>
         </div>
         <div id="buttons">
           <button onClick={() => this.run('warnsdorf')} id="b3">
@@ -203,8 +211,10 @@ class Board extends Component {
             Divide and Conquer
           </button>
           <button
-            onClick={() =>
+            onClick={() => {
+              this.setState({ isKnightPlaced: true })
               warnsdorfAnime(this.props.updateBoard, this.props.moveKnight)
+            }
             }
             id="b3">
             Neural Network
