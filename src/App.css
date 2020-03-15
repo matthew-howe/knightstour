@@ -59,7 +59,7 @@ p {
   div#buttons {
     padding: 0.5em;
     margin: 0.5em;
-    margin-top: 7em;
+    margin-top: 9em;
   }
   @-moz-document url-prefix() {
     div#buttons {
@@ -79,6 +79,7 @@ p {
     margin-top: 1em;
   }
   #title {
+    margin-top:3em;
     margin-left: 0%;
   }
   #img {
@@ -90,6 +91,9 @@ p {
   button#b3 {
     margin: 0.5em;
     padding: 1.5em;
+  }
+  .visited:before {
+    animation: none !important;
   }
 }
 
