@@ -45,7 +45,7 @@ class Board extends Component {
   }
 
   run(algo) {
-
+    this.setState({ isKnightPlaced: true})
     let board = [
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
