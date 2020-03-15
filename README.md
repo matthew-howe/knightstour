@@ -1,6 +1,6 @@
 <p align="center"><h1> Knight's Tour </h1></p>
 
-![GitHub last commit](https://img.shields.io/github/last-commit/matthew-howe/knights-tour)![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/matthew-howe/knights-tour)![GitHub top language](https://img.shields.io/github/languages/top/matthew-howe/knights-tour)![GitHub contributors](https://img.shields.io/github/contributors/matthew-howe/knights-tour)![Website](https://img.shields.io/website?url=https%3A%2F%2Fmatthew-howe.github.io%2Fknights-tour%2F)![GitHub stars](https://img.shields.io/github/stars/matthew-howe/knights-tour)
+![GitHub last commit](https://img.shields.io/github/last-commit/matthew-howe/knights-tour) ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/matthew-howe/knights-tour) ![GitHub top language](https://img.shields.io/github/languages/top/matthew-howe/knights-tour) ![GitHub contributors](https://img.shields.io/github/contributors/matthew-howe/knights-tour) ![Website](https://img.shields.io/website?url=https%3A%2F%2Fmatthew-howe.github.io%2Fknights-tour%2F) ![GitHub stars](https://img.shields.io/github/stars/matthew-howe/knights-tour)
 
 
  A visual exploration of local search algorithms which generate solutions to the Knight's Tour Problem. The paths are beautiful because of the symmetrical characteristics of the different algorithms.
