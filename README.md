@@ -5,7 +5,7 @@
 
  A visual exploration of local search algorithms which generate solutions to the Knight's Tour Problem. The paths are beautiful because of the symmetrical characteristics of the different algorithms.
 
-### VIEW LIVE: https://matthew-howe.github.io/knights-tour/
+### VIEW LIVE: https://xyz123lmnop.github.io/knights-tour/
 
 ![Gif of placing knight and warnsdorff's tour](https://github.com/matthew-howe/knights-tour/blob/master/img/kt.gif)
 
