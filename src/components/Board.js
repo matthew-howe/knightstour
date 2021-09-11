@@ -196,7 +196,7 @@ class Board extends Component {
           <div id="title">
             <h1>Knight's Tour</h1>
             <p>
-              By <a href="http://matthw.com">Matthew Howe</a>
+              By <a href="http://github.com/matthew-howe">Matthew Howe</a>
             </p>
           </div>
           <div>
