@@ -130,7 +130,7 @@ p {
 
 .middle {
   width: 550px;
-  animation: fadein 3s;
+  /* animation: fadein 3s; */
 }
 
 @keyframes fadein {
@@ -191,7 +191,7 @@ button:active {
 }
 
 .placing {
-  animation: placing 4s;
+  /* animation: placing 4s; */
 }
 
 .placing:hover {

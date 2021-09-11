@@ -1,8 +1,8 @@
 {
-  "name": "knights-tour",
+  "name": "knightstour",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://matthew-howe.github.io/knights-tour",
+  "homepage": "https://matthew-howe.github.io/knightstour",
   "dependencies": {
     "@types/jest": "^24.9.1",
     "@types/react": "^16.9.19",
