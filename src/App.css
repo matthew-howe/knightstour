@@ -187,7 +187,7 @@ button:active {
 }
 
 .white {
-  background-color: #fffff0;
+  background-color: whitesmoke;
 }
 
 .placing {
@@ -213,10 +213,10 @@ button:active {
     background: red;
   }
   5% {
-    background: greenyellow;
+    background: yellow;
   }
   10% {
-    background: burlywood;
+    background: greenyellow;
   }
 }
 
@@ -228,7 +228,7 @@ button:active {
 
 .visited:before {
   content: '♞';
-  color: burlywood;
+  color: lemonchiffon;
   font-size: 40px;
   margin: 0 0 0 15px;
   text-shadow: 0px 0px 10px #000;
