@@ -19,6 +19,17 @@ import actionQueue from '../queue/action-queue';
 import Square from './Square';
 import warnsdorfAnime from '../algorithms/warnsdorf-anime';
 import util from '../utils/utils';
+import GitHubForkRibbon from "react-github-fork-ribbon";
+
+const Ribbon = () => (
+  <GitHubForkRibbon
+    href="//www.github.com/matthew-howe/knightstour"
+    target="_blank"
+    position="right"
+  >
+    Fork me on GitHub
+  </GitHubForkRibbon>
+);
 
 
 class Board extends Component {
@@ -196,7 +207,7 @@ class Board extends Component {
           <div id="title">
             <h1>Knight's Tour</h1>
             <p>
-              By <a href="http://github.com/matthew-howe">Matthew Howe</a>
+              By <a href="http://matthewhowe.net">Matthew Howe</a>
             </p>
           </div>
           <div>
